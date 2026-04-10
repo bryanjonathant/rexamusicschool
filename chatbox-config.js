@@ -39,36 +39,46 @@ export const QUICK_REPLIES = [
 // Instructions for Claude. Edit this to change the AI's persona,
 // knowledge, tone, and rules.
 
-export const SYSTEM_PROMPT = `Kamu adalah asisten virtual Rexa Music School (RMS), sebuah contemporary music school di Cimahi, West Java, Indonesia.
+export const SYSTEM_PROMPT = `Kamu adalah asisten virtual Rexa Music School, sebuah contemporary music school di Cimahi, West Java, Indonesia.
 
-INFORMASI RMS:
+INFORMASI REXA MUSIC SCHOOL:
 - Lokasi: Jl. Purbasari No. 3, Padasuka, Cimahi Utara, West Java
 - Berdiri: 2013, di bawah Yayasan Soteria Terpadu
 - WhatsApp: +62 877-0889-1665 | Instagram: @rexamusicschool
 
 PROGRAM INSTRUMEN: Acoustic Guitar, Electric Guitar, Piano, Keyboard, Vocal, Violin, Drums, Bass, Saxophone
-KELAS TAMBAHAN: Theory Class, Students Band, Music Production, Recording Class
-EVENT: Annual Home Concert
+PROGRAM TAMBAHAN: Theory Class, Students Band, Music Production, Recording Class
+EVENT & PROGRAM KOMUNITAS: Annual Home Concert, Music Picnic
 
-KURIKULUM RSL Awards: Diakui internasional (50+ negara), Level Premiere–Grade 8, pendekatan Knowledge + Skills + Attitude
+KURIKULUM RSL Awards (Rockschool by RSL Awards): Diakui internasional (50+ negara), Level Premiere hingga Grade 8, pendekatan Knowledge + Skills + Attitude
 
 SISWA: Mulai usia 5 tahun.
 
 JAM OPERASIONAL:
-- Senin–Jumat: 11.00–19.00
-- Sabtu: 09.00–15.00
+- Senin-Jumat: 11.00-19.00
+- Sabtu: 09.00-15.00
 - Minggu: Tutup
 
 FASILITAS: Ruang kelas ber-AC dan kedap suara. Alat musik tersedia untuk digunakan selama sesi di tempat (tidak bisa dibawa pulang).
 
 HARGA: Tuition fee mulai dari Rp300.000 per bulan (harga starting from, bervariasi tergantung grade dan program). Belum termasuk registration fee, enrollment fee, dan stationery fee. Untuk detail harga, arahkan ke WhatsApp.
 
+KEUNGGULAN REXA MUSIC SCHOOL:
+- Fokus pada kesehatan mental murid dan staf, bukan hanya skill musik
+- Pendekatan yang hangat, menyenangkan, dan bebas tekanan
+- Journal book untuk tracking perkembangan murid secara detail
+- Laporan perkembangan digital bulanan dan kuartalan untuk orang tua
+- Video sesi belajar yang dikirim ke orang tua
+- Hubungan personal yang erat antara instruktur, murid, dan orang tua
+- Kesempatan tampil: Home Concert, Music Picnic, kompetisi, konten media sosial
+- Presensi digital dan sistem modern yang efisien
+
 KEBIJAKAN: Reschedule maksimal diinfokan 24 jam sebelumnya.
 
 GAYA MENJAWAB:
 - Bahasa Indonesia conversational, campur English boleh
 - Gunakan "kamu" bukan "Anda"
-- MAKSIMAL 3 kalimat — singkat dan padat
+- MAKSIMAL 3 kalimat, singkat dan padat
 - Sesekali pakai emoji yang relevan 🎵 🎸 ✨
 - Jika tidak tahu, arahkan ke WhatsApp
 - Jika tertarik, tawarkan free trial gratis`;
@@ -91,7 +101,7 @@ export const FAQ = [
         id: 'programs',
         keywords: ['program', 'kelas', 'instrumen', 'instrument', 'les apa', 'ada apa', 'pilihan', 'tersedia', 'main apa', 'belajar apa'],
         question: 'Program apa saja yang tersedia?',
-        answer: 'RMS punya program instrumen: Acoustic Guitar, Electric Guitar, Piano, Keyboard, Vocal, Violin, Drums, Bass, dan Saxophone. Kelas tambahan: Theory Class, Students Band, Music Production, dan Recording Class. Semua tersedia dari anak-anak sampai dewasa! 🎵',
+        answer: 'Rexa Music School punya 9 program instrumen: Acoustic Guitar, Electric Guitar, Piano, Keyboard, Vocal, Violin, Drums, Bass, dan Saxophone. Plus kelas tambahan: Theory Class, Students Band, Music Production, Recording Class, Annual Home Concert, dan Music Picnic. 🎵',
         cta: null,
     },
     {
@@ -112,21 +122,21 @@ export const FAQ = [
         id: 'trial',
         keywords: ['free trial', 'trial', 'coba', 'gratis', 'percobaan', 'sesi pertama', 'test'],
         question: 'Gimana mekanisme free trial?',
-        answer: 'Hubungi kami via WhatsApp dan kami jadwalkan satu sesi percobaan gratis bersama instruktur yang sesuai. Tidak ada komitmen, tidak ada tekanan — biar musiknya yang bicara! 🎉',
+        answer: 'Hubungi kami via WhatsApp dan kami jadwalkan satu sesi percobaan gratis bersama instruktur yang sesuai. Tidak ada komitmen, tidak ada tekanan, biar musiknya yang bicara! 🎉',
         cta: { label: 'Daftar Free Trial', href: WHATSAPP_URL },
     },
     {
         id: 'age',
         keywords: ['umur', 'usia', 'berapa tahun', 'anak', 'minimal umur', 'mulai umur', 'tahun', 'balita'],
         question: 'Mulai umur berapa bisa belajar?',
-        answer: 'Kami menerima siswa mulai usia 5 tahun. Metode disesuaikan dengan tahap perkembangan tiap usia — anak kecil sampai dewasa punya pendekatan yang berbeda. Tidak ada kata terlambat! 😊',
+        answer: 'Kami menerima siswa mulai usia 5 tahun. Metode disesuaikan dengan tahap perkembangan tiap usia, anak kecil sampai dewasa punya pendekatan yang berbeda. Tidak ada kata terlambat! 😊',
         cta: null,
     },
     {
         id: 'beginner',
         keywords: ['pemula', 'nol', 'belum bisa', 'tidak bisa', 'baru', 'pertama kali', 'dasar', 'dari nol'],
         question: 'Saya masih pemula total, bisa daftar?',
-        answer: 'Justru itu titik terbaik untuk mulai! Kurikulum RSL Awards kami dimulai dari level Premiere — dirancang khusus untuk pemula absolut. Semua orang di RMS dulu juga mulai dari nol 🎵',
+        answer: 'Justru itu titik terbaik untuk mulai! Kurikulum RSL Awards kami dimulai dari level Premiere, dirancang khusus untuk pemula absolut. Semua orang di Rexa Music School dulu juga mulai dari nol 🎵',
         cta: null,
     },
     {
@@ -140,21 +150,21 @@ export const FAQ = [
         id: 'schedule',
         keywords: ['jadwal', 'schedule', 'kapan', 'hari', 'jam', 'waktu', 'fleksibel', 'malam', 'weekend', 'hari apa', 'operasional', 'buka', 'tutup'],
         question: 'Jam operasional dan jadwal les?',
-        answer: 'Kami buka Senin–Jumat pukul 11.00–19.00 dan Sabtu 09.00–15.00. Jadwal les diatur bersama instruktur di awal enrollment sesuai ketersediaan slot 📅',
+        answer: 'Kami buka Senin-Jumat pukul 11.00-19.00 dan Sabtu 09.00-15.00. Jadwal les diatur bersama instruktur di awal enrollment sesuai ketersediaan slot 📅',
         cta: null,
     },
     {
         id: 'rsl',
-        keywords: ['rsl', 'rsl awards', 'sertifikat', 'sertifikasi', 'internasional', 'grade', 'akreditasi'],
+        keywords: ['rsl', 'rsl awards', 'sertifikat', 'sertifikasi', 'internasional', 'grade', 'akreditasi', 'rockschool'],
         question: 'Apa itu RSL Awards?',
-        answer: 'RSL Awards adalah lembaga sertifikasi musik kontemporer dari UK, diakui di 50+ negara. RMS adalah salah satu dari sedikit RSL Accredited Center di West Java — sertifikatmu valid secara internasional! 🌍',
+        answer: 'Rockschool by RSL Awards adalah lembaga sertifikasi musik kontemporer dari UK, diakui di 50+ negara. Rexa Music School adalah salah satu RSL Accredited Center di West Java, sertifikatmu valid secara internasional! 🌍',
         cta: null,
     },
     {
         id: 'location',
         keywords: ['lokasi', 'alamat', 'dimana', 'cimahi', 'bandung', 'jalan', 'tempat', 'parkir', 'maps'],
-        question: 'Di mana lokasi RMS?',
-        answer: 'Kami ada di Jl. Purbasari No. 3, Padasuka, Cimahi Utara — mudah diakses dari Bandung Utara dan Cimahi. Tersedia parkir untuk motor dan mobil 📍',
+        question: 'Di mana lokasi Rexa Music School?',
+        answer: 'Kami ada di Jl. Purbasari No. 3, Padasuka, Cimahi Utara, mudah diakses dari Bandung Utara dan Cimahi. Tersedia parkir untuk motor dan mobil 📍',
         cta: null,
     },
     {
@@ -167,8 +177,8 @@ export const FAQ = [
     {
         id: 'contact',
         keywords: ['kontak', 'hubungi', 'whatsapp', 'wa', 'telepon', 'contact', 'instagram', 'sosmed'],
-        question: 'Bagaimana cara menghubungi RMS?',
-        answer: 'Bisa via WhatsApp +62 877-0889-1665 atau Instagram @rexamusicschool. Kami buka Senin–Jumat 11.00–19.00 dan Sabtu 09.00–15.00 📱',
+        question: 'Bagaimana cara menghubungi Rexa Music School?',
+        answer: 'Bisa via WhatsApp +62 877-0889-1665 atau Instagram @rexamusicschool. Kami buka Senin-Jumat 11.00-19.00 dan Sabtu 09.00-15.00 📱',
         cta: { label: 'Chat WhatsApp', href: WHATSAPP_URL },
     },
     {
@@ -181,8 +191,22 @@ export const FAQ = [
     {
         id: 'compare',
         keywords: ['beda', 'bedanya', 'keunggulan', 'kenapa', 'why', 'les privat', 'dibanding', 'lebih baik'],
-        question: 'Apa bedanya RMS vs les privat biasa?',
-        answer: 'Di RMS kamu dapat kurikulum RSL Awards terstruktur, sertifikasi diakui internasional, komunitas sesama musisi, dan kesempatan tampil di Annual Home Concert — bukan sekadar hafal lagu, tapi tumbuh sebagai musisi 🎵',
+        question: 'Apa bedanya Rexa Music School vs les privat biasa?',
+        answer: 'Di Rexa Music School kamu dapat kurikulum RSL Awards terstruktur, sertifikasi internasional, journal book perkembangan, laporan digital untuk orang tua, komunitas sesama musisi, dan kesempatan tampil di Home Concert dan Music Picnic 🎵',
+        cta: null,
+    },
+    {
+        id: 'mental_health',
+        keywords: ['mental', 'kesehatan mental', 'stress', 'stres', 'nyaman', 'aman', 'tekanan', 'fun', 'menyenangkan', 'suasana'],
+        question: 'Bagaimana pendekatan kesehatan mental di sini?',
+        answer: 'Kami percaya belajar musik harusnya menyenangkan dan bebas tekanan. Kesehatan mental murid adalah prioritas kami, setiap sesi dirancang untuk membangun kepercayaan diri dan rasa nyaman. Musik paling baik dipelajari dengan hati yang bahagia 🧠✨',
+        cta: null,
+    },
+    {
+        id: 'music_picnic',
+        keywords: ['music picnic', 'picnic', 'piknik', 'outdoor', 'komunitas', 'event', 'acara'],
+        question: 'Apa itu Music Picnic?',
+        answer: 'Music Picnic adalah program komunitas Rexa Music School di mana murid, keluarga, dan instruktur berkumpul dalam suasana santai di luar ruangan. Ada penampilan akustik, games, dan momen kebersamaan yang memperkuat komunitas kami 🌿🎸',
         cta: null,
     },
 

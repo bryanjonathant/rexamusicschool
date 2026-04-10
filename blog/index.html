@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Rexa Music School</title>
+    <meta name="description" content="Tips belajar musik, panduan orang tua, dan cerita dari komunitas Rexa Music School di Cimahi.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Blog | Rexa Music School">
+    <meta property="og:description" content="Tips belajar musik, panduan orang tua, dan cerita dari komunitas Rexa Music School.">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #8B0000;
+            --secondary: #FFFFFF;
+            --accent: #F9F6F2;
+            --text: #1A1A1A;
+            --text-muted: #4A4A4A;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text);
+            background-color: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            background-color: var(--secondary);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) { .nav-links { display: flex; } }
+
+        .nav-link {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .nav-link:hover { color: var(--primary); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 2rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .btn-primary { background-color: var(--primary); color: var(--secondary); }
+        .btn-primary:hover { background-color: #660000; transform: translateY(-2px); }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none; border: none;
+            cursor: pointer; padding: 0.5rem;
+        }
+
+        @media (min-width: 1024px) { .mobile-menu-btn { display: none; } }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0; right: -100%;
+            width: 80%; max-width: 300px;
+            height: 100vh;
+            background-color: var(--secondary);
+            z-index: 1001;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 2rem;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            display: flex; flex-direction: column; gap: 2rem;
+        }
+
+        .mobile-drawer.active { right: 0; }
+
+        .drawer-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100vh;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            opacity: 0; visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+
+        /* Page Header */
+        .page-hero {
+            background-color: var(--accent);
+            padding: 8rem 0 4rem;
+        }
+
+        .page-hero-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .page-hero-title { font-size: 3rem; margin-bottom: 1rem; }
+
+        @media (min-width: 768px) { .page-hero-title { font-size: 4rem; } }
+
+        .page-hero-subtitle {
+            color: var(--text-muted);
+            font-size: 1.125rem;
+            max-width: 540px;
+        }
+
+        /* Blog content area */
+        .blog-section { padding: 5rem 0 6rem; }
+
+        /* Featured post */
+        .featured-post {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            margin-bottom: 5rem;
+            background-color: var(--accent);
+            border-radius: 2rem;
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .featured-post:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
+
+        @media (min-width: 1024px) {
+            .featured-post { grid-template-columns: 1fr 1fr; gap: 0; }
+        }
+
+        .featured-post-image {
+            aspect-ratio: 16/9;
+            overflow: hidden;
+        }
+
+        @media (min-width: 1024px) {
+            .featured-post-image { aspect-ratio: auto; min-height: 420px; }
+        }
+
+        .featured-post-image img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .featured-post:hover .featured-post-image img { transform: scale(1.04); }
+
+        .featured-post-body {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .post-category {
+            display: inline-block;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--primary);
+            background-color: rgba(139,0,0,0.08);
+            padding: 0.3rem 0.75rem;
+            border-radius: 9999px;
+            margin-bottom: 1rem;
+        }
+
+        .featured-label {
+            display: inline-block;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.9);
+            background-color: var(--primary);
+            padding: 0.3rem 0.75rem;
+            border-radius: 9999px;
+            margin-bottom: 0.75rem;
+            margin-right: 0.5rem;
+        }
+
+        .featured-post-title {
+            font-size: 1.625rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        @media (min-width: 768px) { .featured-post-title { font-size: 2rem; } }
+
+        .featured-post-excerpt {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+
+        .post-meta-dot { color: rgba(0,0,0,0.2); }
+
+        /* Posts grid */
+        .posts-grid-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .posts-grid-title { font-size: 1.25rem; }
+
+        .category-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .category-btn {
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            background: var(--accent);
+            color: var(--text-muted);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .category-btn.active,
+        .category-btn:hover {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 640px) { .posts-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .posts-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        .post-card {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            background: var(--secondary);
+            border: 1px solid rgba(0,0,0,0.06);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .post-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.07);
+        }
+
+        .post-card-image {
+            aspect-ratio: 16/9;
+            overflow: hidden;
+        }
+
+        .post-card-image img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .post-card:hover .post-card-image img { transform: scale(1.05); }
+
+        .post-card-body { padding: 1.5rem; }
+
+        .post-card-title {
+            font-size: 1.0625rem;
+            margin: 0.5rem 0 0.75rem;
+            line-height: 1.4;
+        }
+
+        .post-card-excerpt {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            line-height: 1.65;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Empty state */
+        .no-posts {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-muted);
+            display: none;
+        }
+
+        .no-posts.visible { display: block; }
+
+        /* Newsletter / CTA strip */
+        .blog-cta {
+            background-color: var(--primary);
+            color: var(--secondary);
+            border-radius: 2rem;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        .blog-cta h2 { color: var(--secondary); font-size: 1.75rem; margin-bottom: 1rem; }
+        .blog-cta p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; }
+
+        .btn-white {
+            background: var(--secondary);
+            color: var(--primary);
+            border-color: transparent;
+        }
+
+        .btn-white:hover { background: var(--accent); transform: translateY(-2px); }
+
+        /* Footer */
+        footer {
+            background-color: var(--text);
+            color: var(--secondary);
+            padding: 4rem 0 2rem;
+            margin-top: 6rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+
+        .footer-brand .logo { color: var(--secondary); }
+        .footer-tagline { color: rgba(255,255,255,0.5); margin-top: 0.75rem; font-size: 0.9375rem; }
+        .footer-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 1.25rem; }
+        .footer-links { display: flex; flex-direction: column; gap: 0.75rem; }
+        .footer-link { font-size: 0.9375rem; color: rgba(255,255,255,0.6); }
+        .footer-link:hover { color: var(--secondary); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; color: rgba(255,255,255,0.3); font-size: 0.875rem; }
+        .social-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
+        .social-icon { width: 40px; height: 40px; border-radius: 50%; background-color: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); transition: var(--transition); }
+        .social-icon:hover { background-color: var(--primary); color: var(--secondary); }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">Rexa Music School</a>
+            <ul class="nav-links">
+                <li><a href="../index.html#programs" class="nav-link">Programs</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#instructors" class="nav-link">Instructors</a></li>
+                <li><a href="../index.html#faq" class="nav-link">FAQ</a></li>
+                <li><a href="index.html" class="nav-link" style="color: var(--primary); font-weight: 700;">Blog</a></li>
+                <li><a href="https://wa.me/6287708891665" class="btn btn-primary">Book Free Trial</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="menu-toggle" aria-label="Toggle Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="mobile-drawer" id="mobile-drawer">
+        <div style="display: flex; justify-content: flex-end;">
+            <button class="mobile-menu-btn" id="menu-close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <ul style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <li><a href="../index.html#programs" class="nav-link" style="font-size: 1.25rem;">Programs</a></li>
+            <li><a href="../index.html#about" class="nav-link" style="font-size: 1.25rem;">About</a></li>
+            <li><a href="../index.html#instructors" class="nav-link" style="font-size: 1.25rem;">Instructors</a></li>
+            <li><a href="../index.html#faq" class="nav-link" style="font-size: 1.25rem;">FAQ</a></li>
+            <li><a href="index.html" class="nav-link" style="font-size: 1.25rem;">Blog</a></li>
+            <li><a href="https://wa.me/6287708891665" class="btn btn-primary" style="width: 100%;">Book Free Trial</a></li>
+        </ul>
+    </div>
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+        <div class="container">
+            <p class="page-hero-label">Blog</p>
+            <h1 class="page-hero-title">Belajar Musik, Mulai dari Sini.</h1>
+            <p class="page-hero-subtitle">Tips praktis, panduan untuk orang tua, dan cerita dari komunitas Rexa Music School.</p>
+        </div>
+    </div>
+
+    <!-- Blog Content -->
+    <div class="blog-section">
+        <div class="container">
+
+            <!-- Featured Post (rendered by JS) -->
+            <div id="featured-container"></div>
+
+            <!-- All Posts Grid -->
+            <div class="posts-grid-header">
+                <h2 class="posts-grid-title">Semua Artikel</h2>
+                <div class="category-filters" id="category-filters">
+                    <button class="category-btn active" data-category="all">Semua</button>
+                </div>
+            </div>
+
+            <div class="posts-grid" id="posts-grid"></div>
+            <div class="no-posts" id="no-posts">Tidak ada artikel di kategori ini.</div>
+
+            <!-- Blog CTA -->
+            <div class="blog-cta">
+                <h2>Tertarik Mencoba Belajar Musik?</h2>
+                <p>Satu sesi free trial, tanpa komitmen. Datang, coba, dan rasakan sendiri bedanya.</p>
+                <a href="https://wa.me/6287708891665" class="btn btn-white">Book Free Trial Sekarang</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="logo">Rexa Music School</span>
+                    <p class="footer-tagline">Belajar Musik. Tumbuh Sebagai Dirimu.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/rexamusicschool/" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="https://wa.me/6287708891665" class="social-icon" aria-label="WhatsApp">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.38 1.26 4.8L2.05 22l5.43-1.27c1.37.73 2.93 1.14 4.56 1.14 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 1.8c2.2 0 4.27.86 5.83 2.42a8.17 8.17 0 012.4 5.7c0 4.46-3.63 8.09-8.09 8.09-1.44 0-2.85-.39-4.07-1.12l-.29-.17-3 .79.8-2.93-.19-.3a8.12 8.12 0 01-1.24-4.36c.01-4.46 3.64-8.12 8.1-8.12zm-2.58 4.2c-.2 0-.51.07-.78.37-.27.3-1.02 1-.02 2.44s1.96 2.93 3.36 3.93c1.4 1 2.95 1.5 3.41 1.5.46 0 1.35-.24 1.58-.58.23-.34.23-.82.16-.93-.07-.11-.27-.18-.58-.32-.31-.14-1.82-.9-2.1-1-.28-.1-.49-.14-.69.14-.2.28-.79.99-.97 1.19-.18.2-.36.22-.67.08-.31-.14-1.3-.48-2.48-1.53-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.47.13-.63.14-.14.31-.36.46-.54.15-.18.2-.31.3-.51.1-.2.05-.38-.02-.53-.07-.15-.69-1.66-.95-2.27-.25-.6-.5-.51-.69-.51h-.74z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html#programs" class="footer-link">Programs</a></li>
+                        <li><a href="../index.html#about" class="footer-link">About Us</a></li>
+                        <li><a href="../index.html#instructors" class="footer-link">Instructors</a></li>
+                        <li><a href="../index.html#faq" class="footer-link">FAQ</a></li>
+                        <li><a href="../index.html#contact" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Others</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://wa.me/6287708891665" class="footer-link">Free Trial</a></li>
+                        <li><a href="../privacy-policy.html" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="../terms-of-service.html" class="footer-link">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Rexa Music School. Part of Yayasan Soteria Terpadu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { posts } from './posts.js';
+
+        // Build category filters
+        const categories = ['all', ...new Set(posts.map(p => p.category))];
+        const filterContainer = document.getElementById('category-filters');
+        filterContainer.innerHTML = categories.map(cat =>
+            `<button class="category-btn${cat === 'all' ? ' active' : ''}" data-category="${cat}">${cat === 'all' ? 'Semua' : cat}</button>`
+        ).join('');
+
+        // Render featured post
+        const featured = posts.find(p => p.featured) || posts[0];
+        if (featured) {
+            document.getElementById('featured-container').innerHTML = `
+                <a href="${featured.slug}.html" class="featured-post">
+                    <div class="featured-post-image">
+                        <img src="${featured.coverImage}" alt="${featured.title}" loading="lazy">
+                    </div>
+                    <div class="featured-post-body">
+                        <div>
+                            <span class="featured-label">Artikel Pilihan</span>
+                            <span class="post-category">${featured.category}</span>
+                        </div>
+                        <h2 class="featured-post-title">${featured.title}</h2>
+                        <p class="featured-post-excerpt">${featured.excerpt}</p>
+                        <div class="post-meta">
+                            <span>${featured.date}</span>
+                            <span class="post-meta-dot">·</span>
+                            <span>${featured.readTime}</span>
+                        </div>
+                    </div>
+                </a>
+            `;
+        }
+
+        // Render post cards
+        let activeCategory = 'all';
+
+        function renderPosts() {
+            const grid = document.getElementById('posts-grid');
+            const noPostsEl = document.getElementById('no-posts');
+            const filtered = posts.filter(p =>
+                (activeCategory === 'all' || p.category === activeCategory) && !p.featured
+            );
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                noPostsEl.classList.add('visible');
+            } else {
+                noPostsEl.classList.remove('visible');
+                grid.innerHTML = filtered.map(post => `
+                    <a href="${post.slug}.html" class="post-card">
+                        <div class="post-card-image">
+                            <img src="${post.coverImage}" alt="${post.title}" loading="lazy">
+                        </div>
+                        <div class="post-card-body">
+                            <span class="post-category">${post.category}</span>
+                            <h3 class="post-card-title">${post.title}</h3>
+                            <p class="post-card-excerpt">${post.excerpt}</p>
+                            <div class="post-meta">
+                                <span>${post.date}</span>
+                                <span class="post-meta-dot">·</span>
+                                <span>${post.readTime}</span>
+                            </div>
+                        </div>
+                    </a>
+                `).join('');
+            }
+        }
+
+        renderPosts();
+
+        // Category filter clicks
+        document.getElementById('category-filters').addEventListener('click', e => {
+            const btn = e.target.closest('.category-btn');
+            if (!btn) return;
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeCategory = btn.dataset.category;
+            renderPosts();
+        });
+
+        // Mobile drawer
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileDrawer = document.getElementById('mobile-drawer');
+        const drawerOverlay = document.getElementById('drawer-overlay');
+
+        function openDrawer() {
+            mobileDrawer.classList.add('active');
+            drawerOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+            mobileDrawer.classList.remove('active');
+            drawerOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        menuToggle.addEventListener('click', openDrawer);
+        menuClose.addEventListener('click', closeDrawer);
+        drawerOverlay.addEventListener('click', closeDrawer);
+        mobileDrawer.querySelectorAll('a').forEach(l => l.addEventListener('click', closeDrawer));
+    </script>
+
+</body>
+</html>

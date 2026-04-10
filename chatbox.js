@@ -580,10 +580,11 @@ const logToSheets = (role, message, source = 'claude') => {
             source,
             page:    window.location.href,
         });
-        // Regular fetch (no no-cors) — Apps Script deployed for "Anyone" supports CORS.
-        // redirect: 'follow' ensures the Apps Script redirect chain is handled correctly.
-        fetch(`${SHEETS_LOG_URL}?${params}`, { redirect: 'follow' })
-            .catch(err => console.warn('[RMS Log]', err));
+        // Use an Image pixel instead of fetch.
+        // Image requests bypass CORS entirely, follow Apps Script redirects automatically,
+        // and preserve all query params — works reliably from any deployed domain.
+        const img = new Image();
+        img.src = `${SHEETS_LOG_URL}?${params}`;
     } catch (e) {
         // logging must never break the chat
     }

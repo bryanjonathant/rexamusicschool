@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rexa Music School | Jadi Musisi. Bukan Sekadar Bisa Main.</title>
+    <title>Rexa Music School | Belajar Musik. Tumbuh Sebagai Dirimu.</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -39,7 +39,7 @@
         }
 
         h1, h2, h3, h4 {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 700;
             line-height: 1.1;
             letter-spacing: -0.02em;
@@ -162,7 +162,7 @@
         }
 
         .logo {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
@@ -441,21 +441,26 @@
             font-size: 0.9375rem;
         }
 
-        .secondary-programs {
+        .additional-programs-header {
             margin-top: 4rem;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-top: 3.5rem;
+            border-top: 1px solid rgba(0,0,0,0.07);
         }
 
-        .secondary-item {
-            padding: 0.75rem 1.5rem;
-            background-color: var(--accent);
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text-muted);
+        .additional-programs-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .additional-programs-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
         }
 
         /* RSL Awards Section */
@@ -501,6 +506,39 @@
             margin-bottom: 1.5rem;
         }
 
+        .rsl-differentiators {
+            display: flex;
+            flex-direction: column;
+            gap: 0.875rem;
+            margin: 1.75rem 0 2rem;
+        }
+
+        .rsl-diff-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.875rem;
+        }
+
+        .rsl-diff-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 0.45rem;
+        }
+
+        .rsl-diff-text {
+            font-size: 0.9375rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .rsl-diff-text strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+
         .rsl-text {
             color: var(--text-muted);
             margin-bottom: 2rem;
@@ -528,44 +566,57 @@
 
         /* Why RMS Section */
         .why-rms {
-            background-color: var(--secondary);
+            background-color: var(--accent);
         }
 
-        .pillars-grid {
+        .why-features-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 3rem;
-            margin-bottom: 5rem;
+            gap: 1.25rem;
+            margin: 4rem 0;
+        }
+
+        @media (min-width: 640px) {
+            .why-features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (min-width: 1024px) {
-            .pillars-grid {
+            .why-features-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
 
-        .pillar-item {
-            text-align: center;
+        .why-feature-card {
+            background: var(--secondary);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            transition: var(--transition);
         }
 
-        .pillar-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 1.5rem;
-            color: var(--primary);
+        .why-feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.07);
         }
 
-        .pillar-title {
-            font-size: 1.5rem;
+        .why-feature-emoji {
+            font-size: 2.25rem;
             margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            display: block;
         }
 
-        .pillar-desc {
+        .why-feature-title {
+            font-size: 1.0625rem;
+            font-weight: 700;
+            margin-bottom: 0.625rem;
+            color: var(--text);
+        }
+
+        .why-feature-desc {
             color: var(--text-muted);
-            max-width: 300px;
-            margin: 0 auto;
+            font-size: 0.9375rem;
+            line-height: 1.65;
         }
 
         .quote-block {
@@ -577,7 +628,7 @@
         }
 
         .quote-text {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1.75rem;
             font-weight: 700;
             max-width: 800px;
@@ -812,6 +863,90 @@
             margin: 0 auto;
         }
 
+        /* Employer Branding Section */
+        .employer-branding {
+            background-color: var(--primary);
+            color: var(--secondary);
+        }
+
+        .employer-branding .section-title {
+            color: var(--secondary);
+        }
+
+        .employer-branding .section-subtitle {
+            color: rgba(255,255,255,0.75);
+        }
+
+        .employer-perks-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+            margin-top: 3.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .employer-perks-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .employer-perks-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .employer-perk-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .employer-perk-card:hover {
+            background: rgba(255,255,255,0.14);
+            transform: translateY(-4px);
+        }
+
+        .employer-perk-emoji {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .employer-perk-title {
+            font-size: 1.0625rem;
+            font-weight: 700;
+            margin-bottom: 0.625rem;
+            color: var(--secondary);
+        }
+
+        .employer-perk-desc {
+            color: rgba(255,255,255,0.72);
+            font-size: 0.9375rem;
+            line-height: 1.65;
+        }
+
+        .employer-cta-row {
+            margin-top: 3.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: var(--secondary);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .btn-outline-white:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: var(--secondary);
+        }
+
         /* FAQ Section */
         .faq {
             background-color: var(--secondary);
@@ -843,7 +978,7 @@
             border: none;
             cursor: pointer;
             text-align: left;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1.125rem;
             font-weight: 700;
             color: var(--text);
@@ -1233,15 +1368,9 @@
             transform: translateY(0);
         }
 
-        /* Secondary program pills — clickable */
-        .secondary-item {
+        /* Additional program cards, clickable */
+        .additional-card {
             cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .secondary-item:hover {
-            background-color: var(--primary);
-            color: var(--secondary);
         }
 
         /* Program Modal */
@@ -1361,6 +1490,7 @@
                 <li><a href="#faq" class="nav-link">FAQ</a></li>
                 <li><a href="#rsl" class="nav-link">RSL Awards</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="blog/index.html" class="nav-link">Blog</a></li>
                 <li><a href="https://wa.me/6287708891665" class="btn btn-primary">Book Free Trial</a></li>
             </ul>
 
@@ -1385,6 +1515,7 @@
             <li><a href="#faq" class="nav-link" style="font-size: 1.25rem;">FAQ</a></li>
             <li><a href="#rsl" class="nav-link" style="font-size: 1.25rem;">RSL Awards</a></li>
             <li><a href="#contact" class="nav-link" style="font-size: 1.25rem;">Contact</a></li>
+            <li><a href="blog/index.html" class="nav-link" style="font-size: 1.25rem;">Blog</a></li>
             <li><a href="https://wa.me/6287708891665" class="btn btn-primary" style="width: 100%;">Book Free Trial</a></li>
         </ul>
     </div>
@@ -1393,11 +1524,11 @@
     <section class="hero">
         <div class="hero-content">
             <h1 class="hero-headline reveal">
-                Jadi Musisi.<br>
-                <span style="color: var(--primary);">Bukan Sekadar Bisa Main.</span>
+                Belajar Musik.<br>
+                <span style="color: var(--primary);">Tumbuh Sebagai Dirimu.</span>
             </h1>
             <p class="hero-subheadline reveal">
-                Sekolah musik kontemporer di Cimahi dengan kurikulum RSL Awards internasional —
+                Sekolah musik kontemporer di Cimahi dengan kurikulum RSL Awards internasional,
                 untuk anak-anak, remaja, dan siapa saja yang siap menemukan suara mereka sendiri.
             </p>
             <div class="hero-ctas reveal">
@@ -1437,7 +1568,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <h2 class="section-title">Pilih Instrumenmu.</h2>
-                <p class="section-subtitle">9 instrumen, 4 kelas tambahan. Satu ekosistem yang dirancang untuk menumbuhkan musisi sungguhan.</p>
+                <p class="section-subtitle">9 instrumen, 6 program tambahan. Satu ekosistem yang dirancang untuk menumbuhkan musisi sungguhan.</p>
             </div>
 
             <div class="programs-grid">
@@ -1449,7 +1580,7 @@
                 <div class="program-card reveal" style="transition-delay: 0.1s;" data-program="electric_guitar">
                     <div class="program-icon">⚡</div>
                     <h3 class="program-name">Electric Guitar</h3>
-                    <p class="program-desc">Teknik, tone, dan ekspresi — semua dalam satu jalur belajar.</p>
+                    <p class="program-desc">Teknik, tone, dan ekspresi, semua dalam satu jalur belajar.</p>
                 </div>
                 <div class="program-card reveal" style="transition-delay: 0.2s;" data-program="piano">
                     <div class="program-icon">🎹</div>
@@ -1474,7 +1605,7 @@
                 <div class="program-card reveal" data-program="drums">
                     <div class="program-icon">🥁</div>
                     <h3 class="program-name">Drums</h3>
-                    <p class="program-desc">Ritme bukan hanya didengar — tapi dirasakan.</p>
+                    <p class="program-desc">Ritme bukan hanya didengar, tapi dirasakan.</p>
                 </div>
                 <div class="program-card reveal" style="transition-delay: 0.1s;" data-program="bass">
                     <div class="program-icon">🎵</div>
@@ -1488,12 +1619,42 @@
                 </div>
             </div>
 
-            <div class="secondary-programs reveal">
-                <button class="secondary-item" data-program="theory_class">📚 Theory Class</button>
-                <button class="secondary-item" data-program="students_band">🎶 Students Band</button>
-                <button class="secondary-item" data-program="music_production">🎚️ Music Production</button>
-                <button class="secondary-item" data-program="recording_class">🎙️ Recording Class</button>
-                <button class="secondary-item" data-program="home_concert">🎭 Annual Home Concert</button>
+            <div class="additional-programs-header reveal">
+                <p class="additional-programs-label">Program Tambahan</p>
+                <h3 class="additional-programs-title">Lebih dari Sekadar Les Instrumen.</h3>
+            </div>
+
+            <div class="programs-grid">
+                <div class="program-card additional-card reveal" data-program="theory_class">
+                    <div class="program-icon">📚</div>
+                    <h3 class="program-name">Theory Class</h3>
+                    <p class="program-desc">Pahami musikmu lebih dalam. Teori yang bikin kamu main lebih cerdas, bukan lebih berat.</p>
+                </div>
+                <div class="program-card additional-card reveal" style="transition-delay: 0.1s;" data-program="students_band">
+                    <div class="program-icon">🎶</div>
+                    <h3 class="program-name">Students Band</h3>
+                    <p class="program-desc">Main bareng, tumbuh bareng. Pengalaman band pertamamu dimulai di sini.</p>
+                </div>
+                <div class="program-card additional-card reveal" style="transition-delay: 0.2s;" data-program="music_production">
+                    <div class="program-icon">🎚️</div>
+                    <h3 class="program-name">Music Production</h3>
+                    <p class="program-desc">Dari ide ke track. Produksi musikmu sendiri dari dapur rekaman digital.</p>
+                </div>
+                <div class="program-card additional-card reveal" data-program="recording_class">
+                    <div class="program-icon">🎙️</div>
+                    <h3 class="program-name">Recording Class</h3>
+                    <p class="program-desc">Rekam, dengarkan, sempurnakan. Pengalaman studio yang sesungguhnya.</p>
+                </div>
+                <div class="program-card additional-card reveal" style="transition-delay: 0.1s;" data-program="home_concert">
+                    <div class="program-icon">🎭</div>
+                    <h3 class="program-name">Annual Home Concert</h3>
+                    <p class="program-desc">Panggung tahunan untuk semua murid Rexa Music School. Tampil, rayakan, dan ulangi.</p>
+                </div>
+                <div class="program-card additional-card reveal" style="transition-delay: 0.2s;" data-program="music_picnic">
+                    <div class="program-icon">🌿</div>
+                    <h3 class="program-name">Music Picnic</h3>
+                    <p class="program-desc">Musik di luar ruangan, suasana santai. Program komunitas yang mempererat hubungan antar murid dan keluarga.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1505,14 +1666,32 @@
                 <div class="rsl-content reveal">
                     <div class="rsl-badge">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        RSL Awards Accredited Center
+                        Rockschool by RSL Awards Accredited Center
                     </div>
                     <h2 class="rsl-title">Standar Dunia, Tepat di Cimahi.</h2>
                     <p class="rsl-text">
-                        RMS adalah RSL Awards Accredited Center — satu-satunya di Cimahi, dan salah satu dari sedikit di West Java. RSL Awards adalah sistem grading musik kontemporer dari UK yang diakui di 50+ negara. Dari level Premiere hingga Grade 8, setiap siswa punya jalur yang jelas, terstruktur, dan berujung pada sertifikasi yang diakui secara global.
+                        Rexa Music School adalah satu-satunya Rockschool by RSL Awards Accredited Center di Cimahi. Kurikulum musik kontemporer dari UK ini diakui di 50+ negara, memberikan setiap siswa jalur belajar yang jelas dari level Premiere hingga Grade 8, dengan sertifikasi yang diakui secara global.
                     </p>
-                    <a href="https://wa.me/6287708891665" class="text-link">
-                        Pelajari Lebih Lanjut 
+                    <div class="rsl-differentiators">
+                        <div class="rsl-diff-item">
+                            <span class="rsl-diff-dot"></span>
+                            <p class="rsl-diff-text"><strong>Bukan hafalan, tapi pemahaman.</strong> Setiap grade mengukur Knowledge, Performance, dan Musicianship secara menyeluruh.</p>
+                        </div>
+                        <div class="rsl-diff-item">
+                            <span class="rsl-diff-dot"></span>
+                            <p class="rsl-diff-text"><strong>Musik yang kamu suka, bukan yang diwajibkan.</strong> Repertoar Rockschool mencakup genre pop, rock, jazz, hingga contemporary yang relevan dengan zaman.</p>
+                        </div>
+                        <div class="rsl-diff-item">
+                            <span class="rsl-diff-dot"></span>
+                            <p class="rsl-diff-text"><strong>Sertifikat yang benar-benar berarti.</strong> Diakui oleh Ofqual (UK) dan lembaga pendidikan internasional sebagai bukti kemampuan musikal yang terstandarisasi.</p>
+                        </div>
+                        <div class="rsl-diff-item">
+                            <span class="rsl-diff-dot"></span>
+                            <p class="rsl-diff-text"><strong>Jalur yang terukur.</strong> Dari Premiere sampai Grade 8, progress kamu selalu jelas dan terstruktur, tidak pernah bingung belajar apa berikutnya.</p>
+                        </div>
+                    </div>
+                    <a href="https://www.rslawards.com/profile/rexa-music-school/" target="_blank" rel="noopener" class="text-link">
+                        Lihat Profil Kami di RSL Awards
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </a>
                 </div>
@@ -1527,30 +1706,40 @@
     <section class="why-rms section-padding">
         <div class="container">
             <div class="section-header reveal">
-                <h2 class="section-title">Beda dari Awal.</h2>
+                <h2 class="section-title">Musik yang Menyehatkan, Bukan Sekadar Melatih.</h2>
+                <p class="section-subtitle">Di Rexa Music School, belajar musik adalah perjalanan yang menyenangkan, personal, dan penuh dukungan. Dari hari pertama sampai seterusnya.</p>
             </div>
 
-            <div class="pillars-grid">
-                <div class="pillar-item reveal">
-                    <div class="pillar-icon">
-                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                    </div>
-                    <h3 class="pillar-title">Knowledge</h3>
-                    <p class="pillar-desc">Teori yang dipahami, bukan dihafal. Karena musisi sejati mengerti apa yang mereka mainkan.</p>
+            <div class="why-features-grid">
+                <div class="why-feature-card reveal">
+                    <span class="why-feature-emoji">🧠</span>
+                    <h3 class="why-feature-title">Kesehatan Mental adalah Prioritas</h3>
+                    <p class="why-feature-desc">Pendekatan kami dimulai dari rasa aman dan nyaman. Setiap sesi dirancang untuk membangun kepercayaan diri, bukan tekanan. Ini berlaku untuk murid dan karyawan kami.</p>
                 </div>
-                <div class="pillar-item reveal" style="transition-delay: 0.1s;">
-                    <div class="pillar-icon">
-                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                    </div>
-                    <h3 class="pillar-title">Skills</h3>
-                    <p class="pillar-desc">Teknik yang dilatih, bukan dicontek. Konsisten, terstruktur, dan relevan dengan musik yang kamu suka.</p>
+                <div class="why-feature-card reveal" style="transition-delay: 0.05s;">
+                    <span class="why-feature-emoji">💛</span>
+                    <h3 class="why-feature-title">Kecerdasan Emosional dan Soft Skills</h3>
+                    <p class="why-feature-desc">Musik mengajarkan empati, kesabaran, dan cara bekerja sama. Murid tidak hanya tumbuh sebagai musisi, tapi juga sebagai manusia yang lebih peka dan percaya diri.</p>
                 </div>
-                <div class="pillar-item reveal" style="transition-delay: 0.2s;">
-                    <div class="pillar-icon">
-                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.84-8.84 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                    </div>
-                    <h3 class="pillar-title">Attitude</h3>
-                    <p class="pillar-desc">Karakter terbentuk lewat musik. Disiplin, percaya diri, dan empati — ini yang kami tanamkan sejak hari pertama.</p>
+                <div class="why-feature-card reveal" style="transition-delay: 0.1s;">
+                    <span class="why-feature-emoji">📖</span>
+                    <h3 class="why-feature-title">Journal Book Perkembangan Siswa</h3>
+                    <p class="why-feature-desc">Setiap murid punya journal book untuk mencatat perkembangan dari setiap sesi secara detail. Orang tua dan instruktur bisa melihat progres yang nyata, bukan sekadar estimasi.</p>
+                </div>
+                <div class="why-feature-card reveal" style="transition-delay: 0.15s;">
+                    <span class="why-feature-emoji">📱</span>
+                    <h3 class="why-feature-title">Laporan Digital dan Video Sesi</h3>
+                    <p class="why-feature-desc">Orang tua menerima laporan perkembangan digital setiap bulan dan kuartal. Plus video singkat sesi belajar anak, karena setiap progres kecil layak dirayakan bersama.</p>
+                </div>
+                <div class="why-feature-card reveal" style="transition-delay: 0.2s;">
+                    <span class="why-feature-emoji">🤝</span>
+                    <h3 class="why-feature-title">Hubungan yang Benar-Benar Personal</h3>
+                    <p class="why-feature-desc">Kami mengenal setiap murid, bukan hanya nama dan instrumennya. Instruktur kami membangun hubungan tulus dengan murid dan orang tua, karena kepercayaan adalah fondasi belajar.</p>
+                </div>
+                <div class="why-feature-card reveal" style="transition-delay: 0.25s;">
+                    <span class="why-feature-emoji">🎤</span>
+                    <h3 class="why-feature-title">Panggung untuk Tumbuh dan Tampil</h3>
+                    <p class="why-feature-desc">Home Concert, Music Picnic, kompetisi, hingga konten media sosial. Setiap murid punya kesempatan tampil dan merayakan perjalanannya, karena musisi tumbuh saat mereka berani tampil.</p>
                 </div>
             </div>
 
@@ -1571,7 +1760,7 @@
                 <div class="audience-card reveal">
                     <span class="audience-emoji">🧒</span>
                     <h3 class="audience-title">Untuk Anak &amp; Remaja</h3>
-                    <p class="audience-desc">Musik membangun disiplin, kreativitas, dan kepercayaan diri — tiga hal yang anak-anak butuhkan seumur hidup, bukan hanya di panggung.</p>
+                    <p class="audience-desc">Musik membangun disiplin, kreativitas, dan kepercayaan diri, tiga hal yang anak-anak butuhkan seumur hidup, bukan hanya di panggung.</p>
                 </div>
                 <div class="audience-card reveal" style="transition-delay: 0.1s;">
                     <span class="audience-emoji">🎸</span>
@@ -1581,7 +1770,7 @@
                 <div class="audience-card reveal" style="transition-delay: 0.2s;">
                     <span class="audience-emoji">👨‍👩‍👧</span>
                     <h3 class="audience-title">Untuk Orang Tua</h3>
-                    <p class="audience-desc">Ini bukan sekadar les musik — ini investasi untuk tumbuh kembang anak secara holistik, dengan kurikulum internasional dan komunitas yang mendukung.</p>
+                    <p class="audience-desc">Ini bukan sekadar les musik, ini investasi untuk tumbuh kembang anak secara holistik, dengan kurikulum internasional dan komunitas yang mendukung.</p>
                 </div>
             </div>
         </div>
@@ -1596,7 +1785,7 @@
 
             <div class="testimonials-grid">
                 <div class="testimonial-card reveal">
-                    <p class="testimonial-quote">"Anak saya jauh lebih percaya diri sejak belajar di RMS. Bukan cuma musiknya — sikapnya pun berubah."</p>
+                    <p class="testimonial-quote">"Anak saya jauh lebih percaya diri sejak belajar di Rexa Music School. Bukan cuma musiknya, sikapnya pun berubah."</p>
                     <div class="testimonial-author">
                         <span class="author-name">Ibu Sari</span>
                         <span class="author-role">Orang tua siswa</span>
@@ -1625,7 +1814,7 @@
         <div class="container">
             <div class="cta-container reveal">
                 <h2 class="cta-title">Mulai Sekarang. Gratis.</h2>
-                <p class="cta-subtitle">Satu sesi percobaan, tanpa komitmen, tanpa tekanan. Cukup datang — biar musiknya yang bicara.</p>
+                <p class="cta-subtitle">Satu sesi percobaan, tanpa komitmen, tanpa tekanan. Cukup datang, biar musiknya yang bicara.</p>
                 <a href="https://wa.me/6287708891665" class="btn btn-white btn-lg" style="font-size: 1.25rem; padding: 1.25rem 3rem;">Daftar Free Trial Sekarang</a>
                 <p class="cta-microcopy">Hubungi via WhatsApp · Senin–Jumat 11.00–19.00 · Sabtu 09.00–15.00</p>
             </div>
@@ -1642,10 +1831,10 @@
                 <div class="about-content reveal" style="transition-delay: 0.2s;">
                     <h2 class="about-title">Lebih dari Sekolah Musik.</h2>
                     <p class="about-text">
-                        Berdiri sejak 2013 di Cimahi, Rexa Music School lahir dari satu keyakinan: musik bukan sekadar keterampilan, tapi alat untuk tumbuh. Berakar dari musik terapi dan bernaung di bawah Yayasan Soteria Terpadu, kami membangun sekolah yang peduli pada perkembangan manusia secara utuh — bukan hanya teknik bermain.
+                        Berdiri sejak 2013 di Cimahi, Rexa Music School lahir dari satu keyakinan: musik bukan sekadar keterampilan, tapi alat untuk tumbuh. Berakar dari musik terapi dan bernaung di bawah Yayasan Soteria Terpadu, kami membangun sekolah yang peduli pada perkembangan manusia secara utuh, bukan hanya teknik bermain.
                     </p>
                     <p class="about-text">
-                        Hari ini, RMS adalah satu-satunya contemporary music school di Cimahi dengan akreditasi RSL Awards internasional. Kami terus berkembang untuk melayani lebih banyak keluarga di West Java yang percaya bahwa musik adalah investasi terbaik untuk tumbuh kembang anak.
+                        Hari ini, Rexa Music School adalah satu-satunya contemporary music school di Cimahi dengan akreditasi RSL Awards internasional. Kami terus berkembang untuk melayani lebih banyak keluarga di West Java yang percaya bahwa musik adalah investasi terbaik untuk tumbuh kembang anak.
                     </p>
                     <a href="https://wa.me/6287708891665" class="text-link">
                         Pelajari Lebih Lanjut 
@@ -1661,7 +1850,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <h2 class="section-title">Belajar dari yang Terbaik.</h2>
-                <p class="section-subtitle">Bukan sekadar pengajar — mereka adalah musisi, mentor, dan motivator.</p>
+                <p class="section-subtitle">Bukan sekadar pengajar. Mereka adalah musisi, mentor, dan motivator.</p>
             </div>
 
             <div class="instructors-grid">
@@ -1708,12 +1897,60 @@
         </div>
     </section>
 
+    <!-- Employer Branding Section -->
+    <section id="karir" class="employer-branding section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Kerja di Tempat yang Peduli.</h2>
+                <p class="section-subtitle">Rexa Music School bukan hanya tempat belajar yang baik untuk murid, tapi juga tempat kerja yang baik untuk tim kami. Karena orang yang bahagia mengajar dengan cara yang berbeda.</p>
+            </div>
+
+            <div class="employer-perks-grid">
+                <div class="employer-perk-card reveal">
+                    <span class="employer-perk-emoji">🧠</span>
+                    <h3 class="employer-perk-title">Mental Health Juga Prioritas Tim</h3>
+                    <p class="employer-perk-desc">Kami membangun lingkungan kerja yang sehat, tidak toksik, dan saling mendukung. Kesehatan mental karyawan bukan agenda samping, tapi bagian dari cara kami bekerja sehari-hari.</p>
+                </div>
+                <div class="employer-perk-card reveal" style="transition-delay: 0.05s;">
+                    <span class="employer-perk-emoji">🌱</span>
+                    <h3 class="employer-perk-title">Tumbuh Bersama Rexa Music School</h3>
+                    <p class="employer-perk-desc">Kami investasi di pengembangan instruktur dan staf kami, mulai dari pelatihan kurikulum RSL Awards, coaching, hingga kesempatan tampil dan berkarya di luar jam mengajar.</p>
+                </div>
+                <div class="employer-perk-card reveal" style="transition-delay: 0.1s;">
+                    <span class="employer-perk-emoji">✨</span>
+                    <h3 class="employer-perk-title">Lingkungan yang Efisien dan Modern</h3>
+                    <p class="employer-perk-desc">Sistem digital untuk absensi, jadwal, laporan, dan komunikasi dengan orang tua murid. Kami percaya alur kerja yang efisien memberi lebih banyak ruang untuk hal yang penting: mengajar dengan sepenuh hati.</p>
+                </div>
+                <div class="employer-perk-card reveal" style="transition-delay: 0.15s;">
+                    <span class="employer-perk-emoji">🤝</span>
+                    <h3 class="employer-perk-title">Tim yang Solid dan Suportif</h3>
+                    <p class="employer-perk-desc">Kami adalah komunitas kecil yang erat. Instruktur saling mendukung, ide dihargai, dan setiap kontribusi terasa nyata. Tidak ada hierarki yang menghalangi kreativitas di sini.</p>
+                </div>
+                <div class="employer-perk-card reveal" style="transition-delay: 0.2s;">
+                    <span class="employer-perk-emoji">🎯</span>
+                    <h3 class="employer-perk-title">Pekerjaan yang Punya Makna</h3>
+                    <p class="employer-perk-desc">Kamu tidak hanya mengajar musik. Kamu membentuk karakter, membangun kepercayaan diri, dan menemani perjalanan murid menjadi versi terbaik dari diri mereka. Itu bukan pekerjaan biasa.</p>
+                </div>
+                <div class="employer-perk-card reveal" style="transition-delay: 0.25s;">
+                    <span class="employer-perk-emoji">🎸</span>
+                    <h3 class="employer-perk-title">Untuk yang Benar-Benar Cinta Musik</h3>
+                    <p class="employer-perk-desc">Bergabunglah jika kamu seorang musisi yang juga ingin berbagi. Kami mencari orang yang passionate, empati, dan percaya bahwa musik bisa mengubah hidup seseorang untuk menjadi lebih baik.</p>
+                </div>
+            </div>
+
+            <div class="employer-cta-row reveal">
+                <a href="https://wa.me/6287708891665?text=Halo%2C%20saya%20tertarik%20bergabung%20sebagai%20instruktur%20di%20Rexa%20Music%20School" target="_blank" rel="noopener" class="btn btn-secondary" style="background: var(--secondary); color: var(--primary);">Bergabung dengan Tim Kami</a>
+                <a href="https://www.instagram.com/rexamusicschool/" target="_blank" rel="noopener" class="btn btn-outline-white">Lihat Kehidupan di RMS</a>
+            </div>
+        </div>
+    </section>
+
     <!-- FAQ Section -->
     <section id="faq" class="faq section-padding">
         <div class="container">
             <div class="section-header reveal">
                 <h2 class="section-title">Pertanyaan yang Sering Ditanyakan.</h2>
-                <p class="section-subtitle">Masih ada yang kurang jelas? Hubungi kami langsung via WhatsApp — kami siap membantu.</p>
+                <p class="section-subtitle">Masih ada yang kurang jelas? Hubungi kami langsung via WhatsApp, kami siap membantu.</p>
             </div>
 
             <div class="faq-container reveal">
@@ -1726,19 +1963,19 @@
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-content">
-                                Tuition fee mulai dari Rp300.000 per bulan (harga bervariasi tergantung grade dan program). Belum termasuk registration fee, enrollment fee, dan stationery fee. Untuk detail lengkap, hubungi kami via WhatsApp — kami senang membantu!
+                                Tuition fee mulai dari Rp300.000 per bulan (harga bervariasi tergantung grade dan program). Belum termasuk registration fee, enrollment fee, dan stationery fee. Untuk detail lengkap, hubungi kami via WhatsApp, kami senang membantu!
                             </div>
                         </div>
                     </div>
                     <!-- FAQ 2 -->
                     <div class="faq-item">
                         <button class="faq-question">
-                            Mulai umur berapa anak bisa belajar di RMS?
+                            Mulai umur berapa anak bisa belajar di Rexa Music School?
                             <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-content">
-                                Kami menerima siswa mulai usia 5 tahun. Setiap usia punya pendekatan belajar yang berbeda — kami akan menyesuaikan metode dengan tahap perkembangan anak.
+                                Kami menerima siswa mulai usia 5 tahun. Setiap usia punya pendekatan belajar yang berbeda, kami akan menyesuaikan metode dengan tahap perkembangan anak.
                             </div>
                         </div>
                     </div>
@@ -1750,7 +1987,7 @@
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-content">
-                                Justru itu titik awal yang paling baik. Kurikulum RSL Awards kami dimulai dari level Premiere — dirancang khusus untuk pemula absolut. Tidak ada yang terlalu baru untuk memulai.
+                                Justru itu titik awal yang paling baik. Kurikulum RSL Awards kami dimulai dari level Premiere, dirancang khusus untuk pemula absolut. Tidak ada yang terlalu baru untuk memulai.
                             </div>
                         </div>
                     </div>
@@ -1793,12 +2030,12 @@
                     <!-- FAQ 7 -->
                     <div class="faq-item">
                         <button class="faq-question">
-                            Apa bedanya belajar di RMS dibanding les privat biasa?
+                            Apa bedanya belajar di Rexa Music School dibanding les privat biasa?
                             <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-content">
-                                Les privat memberi fleksibilitas, tapi tidak memberi struktur, komunitas, atau sertifikasi. Di RMS, siswa dapat kurikulum internasional yang jelas, instruktur terlatih, jalur grade yang terukur, kesempatan tampil di Annual Home Concert, dan komunitas sesama musisi. Belajar musik di sini bukan hanya soal teknik — tapi tentang tumbuh.
+                                Les privat memberi fleksibilitas, tapi tidak memberi struktur, komunitas, atau sertifikasi. Di Rexa Music School, siswa dapat kurikulum internasional yang jelas, instruktur terlatih, jalur grade yang terukur, kesempatan tampil di Annual Home Concert, dan komunitas sesama musisi. Belajar musik di sini bukan hanya soal teknik, tapi tentang tumbuh.
                             </div>
                         </div>
                     </div>
@@ -1829,12 +2066,12 @@
                     <!-- FAQ 10 -->
                     <div class="faq-item">
                         <button class="faq-question">
-                            Di mana lokasi RMS dan apakah ada parkir?
+                            Di mana lokasi Rexa Music School dan apakah ada parkir?
                             <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-content">
-                                Kami berlokasi di Jl. Purbasari No. 3, Padasuka, Cimahi Utara — area residensial yang mudah diakses dari Bandung Utara dan Cimahi. Tersedia area parkir untuk motor dan mobil.
+                                Kami berlokasi di Jl. Purbasari No. 3, Padasuka, Cimahi Utara, area residensial yang mudah diakses dari Bandung Utara dan Cimahi. Tersedia area parkir untuk motor dan mobil.
                             </div>
                         </div>
                     </div>
@@ -1918,7 +2155,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <span class="logo">Rexa Music School</span>
-                    <p class="footer-tagline">Jadi Musisi. Bukan Sekadar Bisa Main.</p>
+                    <p class="footer-tagline">Belajar Musik. Tumbuh Sebagai Dirimu.</p>
                     <div class="social-links">
                         <a href="#" class="social-icon" aria-label="Instagram">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
@@ -1949,9 +2186,9 @@
                     <h4 class="footer-title">Others</h4>
                     <ul class="footer-links">
                         <li><a href="https://wa.me/6287708891665" class="footer-link">Free Trial</a></li>
-                        <li><a href="#" class="footer-link">Careers</a></li>
-                        <li><a href="#" class="footer-link">Privacy Policy</a></li>
-                        <li><a href="#" class="footer-link">Terms of Service</a></li>
+                        <li><a href="#karir" class="footer-link">Careers</a></li>
+                        <li><a href="privacy-policy.html" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html" class="footer-link">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
@@ -2110,77 +2347,77 @@
             acoustic_guitar: {
                 name: 'Acoustic Guitar', emoji: '🎸',
                 tagline: 'Di mana semua dimulai.',
-                desc: 'Acoustic guitar adalah pintu masuk paling natural ke dunia musik. Di RMS, kamu belajar dari chord dasar hingga teknik fingerpicking dan strumming yang kompleks — menggunakan kurikulum RSL Awards dari level Premiere hingga Grade 8 yang diakui secara internasional.',
+                desc: 'Acoustic guitar adalah pintu masuk paling natural ke dunia musik. Di Rexa Music School, kamu belajar dari chord dasar hingga teknik fingerpicking dan strumming yang kompleks, menggunakan kurikulum RSL Awards dari level Premiere hingga Grade 8 yang diakui secara internasional.',
                 highlights: ['Cocok mulai usia 6 tahun', 'Level Premiere–Grade 8', 'Teknik fingerpicking & strumming', 'Repertoar pop, folk, dan klasik', 'Sertifikasi RSL Awards'],
                 image: 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=2070&auto=format&fit=crop',
             },
             electric_guitar: {
                 name: 'Electric Guitar', emoji: '⚡',
                 tagline: 'Teknik yang bicara, tone yang berkarakter.',
-                desc: 'Electric guitar membuka dunia ekspresi yang lebih luas — dari blues yang emosional hingga riff rock yang powerful. Kamu belajar teknik lead, rhythm, efek, dan teori yang mendukung permainanmu di atas panggung maupun studio.',
+                desc: 'Electric guitar membuka dunia ekspresi yang lebih luas, dari blues yang emosional hingga riff rock yang powerful. Kamu belajar teknik lead, rhythm, efek, dan teori yang mendukung permainanmu di atas panggung maupun studio.',
                 highlights: ['Cocok mulai usia 8 tahun', 'Teknik lead & rhythm', 'Pengenalan efek dan tone shaping', 'Genre rock, blues, pop, metal', 'Sertifikasi RSL Awards'],
                 image: 'https://images.unsplash.com/photo-1525201548942-d8732f6617a0?q=80&w=2070&auto=format&fit=crop',
             },
             piano: {
                 name: 'Piano', emoji: '🎹',
                 tagline: 'Fondasi terkuat dalam musik.',
-                desc: 'Piano bukan sekadar instrumen — ini adalah bahasa universal musik itu sendiri. Siswa RMS belajar teknik klasik yang terstruktur sambil memainkan repertoar kontemporer yang relevan, dari lagu pop favorit hingga komposisi yang lebih kompleks.',
+                desc: 'Piano bukan sekadar instrumen. Ini adalah bahasa universal musik itu sendiri. Siswa Rexa Music School belajar teknik klasik yang terstruktur sambil memainkan repertoar kontemporer yang relevan, dari lagu pop favorit hingga komposisi yang lebih kompleks.',
                 highlights: ['Cocok mulai usia 5 tahun', 'Pendekatan klasik + kontemporer', 'Teori musik terintegrasi', 'Level Premiere–Grade 8', 'Sertifikasi RSL Awards'],
                 image: 'https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=2070&auto=format&fit=crop',
             },
             keyboard: {
                 name: 'Keyboard', emoji: '🎼',
                 tagline: 'Eksplorasi sound tanpa batas.',
-                desc: 'Keyboard membuka pintu ke dunia produksi dan aransemen modern. Di luar teknik bermain, kamu juga belajar memahami sound, layer, dan cara menciptakan nuansa yang tepat — skill yang sangat relevan di era musik digital ini.',
+                desc: 'Keyboard membuka pintu ke dunia produksi dan aransemen modern. Di luar teknik bermain, kamu juga belajar memahami sound, layer, dan cara menciptakan nuansa yang tepat, skill yang sangat relevan di era musik digital ini.',
                 highlights: ['Cocok mulai usia 6 tahun', 'Eksplorasi berbagai sound & preset', 'Dasar aransemen modern', 'Genre pop, R&B, electronic', 'Relevan untuk produksi musik'],
                 image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop',
             },
             vocal: {
                 name: 'Vocal', emoji: '🎤',
                 tagline: 'Suaramu sudah ada. Kami bantu kamu menemukannya.',
-                desc: 'Vokal bukan hanya soal suara yang bagus — ini soal teknik yang benar, kesehatan pita suara, dan keberanian untuk tampil. Di RMS, kamu belajar pernapasan diafragma, resonansi, pitch accuracy, dan cara membawakan lagu dengan ekspresi yang autentik.',
+                desc: 'Vokal bukan hanya soal suara yang bagus, ini soal teknik yang benar, kesehatan pita suara, dan keberanian untuk tampil. Di Rexa Music School, kamu belajar pernapasan diafragma, resonansi, pitch accuracy, dan cara membawakan lagu dengan ekspresi yang autentik.',
                 highlights: ['Cocok mulai usia 7 tahun', 'Teknik pernapasan & resonansi', 'Kesehatan vokal', 'Genre pop, R&B, musical', 'Sertifikasi RSL Awards'],
                 image: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=2070&auto=format&fit=crop',
             },
             violin: {
                 name: 'Violin', emoji: '🎻',
                 tagline: 'Teknik presisi, ekspresi tanpa batas.',
-                desc: 'Violin adalah instrumen yang menuntut presisi sekaligus kepekaan rasa. Program violin di RMS menggabungkan teknik yang terstruktur — postur, bowing, intonasi — dengan repertoar yang menarik, agar belajar tetap menyenangkan di setiap levelnya.',
+                desc: 'Violin adalah instrumen yang menuntut presisi sekaligus kepekaan rasa. Program violin di Rexa Music School menggabungkan teknik yang terstruktur, postur, bowing, intonasi, dengan repertoar yang menarik, agar belajar tetap menyenangkan di setiap levelnya.',
                 highlights: ['Cocok mulai usia 5 tahun', 'Teknik bowing & intonasi', 'Postur dan teknik tangan yang benar', 'Repertoar klasik & kontemporer', 'Sertifikasi RSL Awards'],
                 image: 'https://images.unsplash.com/photo-1465821185615-20b3c2fbf41b?q=80&w=2070&auto=format&fit=crop',
             },
             drums: {
                 name: 'Drums', emoji: '🥁',
-                tagline: 'Ritme bukan hanya didengar — tapi dirasakan.',
-                desc: 'Bermain drums melatih koordinasi, timing, dan kepekaan musikal secara bersamaan. Di RMS, kamu belajar dari rudiments dasar hingga groove kompleks di berbagai genre, dengan pendekatan yang membangun kepercayaan diri tampil di atas panggung.',
+                tagline: 'Ritme bukan hanya didengar, tapi dirasakan.',
+                desc: 'Bermain drums melatih koordinasi, timing, dan kepekaan musikal secara bersamaan. Di Rexa Music School, kamu belajar dari rudiments dasar hingga groove kompleks di berbagai genre, dengan pendekatan yang membangun kepercayaan diri tampil di atas panggung.',
                 highlights: ['Cocok mulai usia 6 tahun', 'Koordinasi tangan & kaki', 'Rudiments & groove', 'Genre pop, rock, jazz, latin', 'Sertifikasi RSL Awards'],
                 image: 'https://images.unsplash.com/photo-1524230572899-a752b3835840?q=80&w=2070&auto=format&fit=crop',
             },
             bass: {
                 name: 'Bass', emoji: '🎵',
                 tagline: 'Fondasi sebuah band. Peran yang tak tergantikan.',
-                desc: 'Bass adalah tulang punggung dari setiap ensemble musik. Di RMS, kamu belajar lebih dari sekadar mengikuti chord — tapi memahami groove, pocket, dan bagaimana bass menciptakan karakter sebuah lagu dari bawah ke atas.',
+                desc: 'Bass adalah tulang punggung dari setiap ensemble musik. Di Rexa Music School, kamu belajar lebih dari sekadar mengikuti chord, tapi memahami groove, pocket, dan bagaimana bass menciptakan karakter sebuah lagu dari bawah ke atas.',
                 highlights: ['Cocok mulai usia 8 tahun', 'Teknik fingerstyle & pick', 'Groove & pocket playing', 'Genre pop, funk, rock, jazz', 'Teori harmoni untuk bassist'],
                 image: 'https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?q=80&w=2070&auto=format&fit=crop',
             },
             saxophone: {
                 name: 'Saxophone', emoji: '🎷',
                 tagline: 'Instrumen yang berbicara langsung ke hati.',
-                desc: 'Saxophone punya karakter suara yang khas — hangat, ekspresif, dan penuh jiwa. Program saxophone di RMS membangun teknik embouchure, kontrol napas, dan musikalitas yang membuat setiap nada yang kamu mainkan punya cerita.',
+                desc: 'Saxophone punya karakter suara yang khas: hangat, ekspresif, dan penuh jiwa. Program saxophone di Rexa Music School membangun teknik embouchure, kontrol napas, dan musikalitas yang membuat setiap nada yang kamu mainkan punya cerita.',
                 highlights: ['Cocok mulai usia 8 tahun', 'Teknik embouchure & breath control', 'Genre jazz, pop, R&B, klasik', 'Improvisasi dasar', 'Tersedia alto & tenor saxophone'],
                 image: 'https://images.unsplash.com/photo-1461784180009-27c171c6aed7?q=80&w=2070&auto=format&fit=crop',
             },
             theory_class: {
                 name: 'Theory Class', emoji: '📚',
                 tagline: 'Pahami bahasa musik.',
-                desc: 'Musisi yang baik bukan hanya bisa bermain — mereka mengerti apa yang mereka mainkan. Theory Class di RMS mengajarkan notasi, harmoni, ritme, dan ear training secara sistematis, agar kamu bisa belajar lebih cepat dan bermain lebih ekspresif di instrumen apapun.',
+                desc: 'Musisi yang baik bukan hanya bisa bermain, mereka mengerti apa yang mereka mainkan. Theory Class di Rexa Music School mengajarkan notasi, harmoni, ritme, dan ear training secara sistematis, agar kamu bisa belajar lebih cepat dan bermain lebih ekspresif di instrumen apapun.',
                 highlights: ['Tersedia untuk semua instrumen', 'Notasi & sight-reading', 'Harmoni & akor', 'Ear training', 'Mendukung persiapan ujian RSL'],
                 image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop',
             },
             students_band: {
                 name: 'Students Band', emoji: '🎶',
                 tagline: 'Bermain bersama, tumbuh bersama.',
-                desc: 'Bermain solo itu hebat — tapi bermain dalam band adalah pengalaman yang berbeda sepenuhnya. Students Band mengajarkan cara mendengarkan satu sama lain, menjaga groove bersama, dan membangun chemistry yang membuat musik terasa hidup.',
+                desc: 'Bermain solo itu hebat, tapi bermain dalam band adalah pengalaman yang berbeda sepenuhnya. Students Band mengajarkan cara mendengarkan satu sama lain, menjaga groove bersama, dan membangun chemistry yang membuat musik terasa hidup.',
                 highlights: ['Terbuka untuk semua instrumen', 'Latihan ensemble mingguan', 'Repertoar lagu-lagu populer', 'Persiapan tampil di Annual Home Concert', 'Membangun kerja sama & komunikasi'],
                 image: 'https://images.unsplash.com/photo-1504704911898-68304a7d2807?q=80&w=2070&auto=format&fit=crop',
             },
@@ -2194,16 +2431,23 @@
             recording_class: {
                 name: 'Recording Class', emoji: '🎙️',
                 tagline: 'Dengarkan dirimu dari perspektif baru.',
-                desc: 'Recording Class memberi kamu pengalaman rekaman di studio yang sesungguhnya. Kamu belajar teknik mikrofon, akustik ruangan, proses tracking, dan dasar mixing — sekaligus mendapatkan rekaman profesional dari penampilanmu sendiri.',
+                desc: 'Recording Class memberi kamu pengalaman rekaman di studio yang sesungguhnya. Kamu belajar teknik mikrofon, akustik ruangan, proses tracking, dan dasar mixing, sekaligus mendapatkan rekaman profesional dari penampilanmu sendiri.',
                 highlights: ['Pengalaman studio rekaman nyata', 'Teknik mikrofon & akustik', 'Proses tracking & overdubbing', 'Dasar mixing & mastering', 'Tersedia untuk semua instrumen'],
                 image: 'https://images.unsplash.com/photo-1598653222000-6b7b7a552625?q=80&w=2070&auto=format&fit=crop',
             },
             home_concert: {
                 name: 'Annual Home Concert', emoji: '🎭',
                 tagline: 'Momen tampil yang selalu ditunggu.',
-                desc: 'Annual Home Concert adalah momen paling istimewa di RMS — di mana semua siswa tampil di atas panggung di hadapan keluarga dan komunitas. Ini bukan sekadar pertunjukan; ini adalah bukti nyata dari perjalanan belajar seorang musisi muda.',
-                highlights: ['Diselenggarakan setahun sekali', 'Terbuka untuk semua siswa', 'Panggung profesional', 'Disaksikan keluarga & komunitas RMS', 'Momen yang tak terlupakan'],
+                desc: 'Annual Home Concert adalah momen paling istimewa di Rexa Music School, di mana semua siswa tampil di atas panggung di hadapan keluarga dan komunitas. Ini bukan sekadar pertunjukan; ini adalah bukti nyata dari perjalanan belajar seorang musisi muda.',
+                highlights: ['Diselenggarakan setahun sekali', 'Terbuka untuk semua siswa', 'Panggung profesional', 'Disaksikan keluarga & komunitas Rexa Music School', 'Momen yang tak terlupakan'],
                 image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop',
+            },
+            music_picnic: {
+                name: 'Music Picnic', emoji: '🌿',
+                tagline: 'Musik paling enak dinikmati di luar ruangan.',
+                desc: 'Music Picnic adalah program komunitas Rexa Music School yang mengajak murid, keluarga, dan instruktur untuk berkumpul dalam suasana santai di luar ruangan. Pertunjukan akustik, games, dan momen kebersamaan yang memperkuat ikatan antar sesama musisi muda.',
+                highlights: ['Program komunitas resmi Rexa Music School', 'Penampilan akustik murid', 'Terbuka untuk keluarga siswa', 'Suasana santai dan menyenangkan', 'Mempererat hubungan murid, orang tua, dan instruktur'],
+                image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=2070&auto=format&fit=crop',
             },
         };
 
@@ -2235,8 +2479,8 @@
             card.addEventListener('click', () => openProgramModal(card.dataset.program));
         });
 
-        document.querySelectorAll('.secondary-item[data-program]').forEach(btn => {
-            btn.addEventListener('click', () => openProgramModal(btn.dataset.program));
+        document.querySelectorAll('.additional-card[data-program]').forEach(card => {
+            card.addEventListener('click', () => openProgramModal(card.dataset.program));
         });
 
         programModalClose.addEventListener('click', closeProgramModal);
