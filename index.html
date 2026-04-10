@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rexa Music School | Where You Find Your Sound</title>
+    <title>Rexa Music School | Jadi Musisi. Bukan Sekadar Bisa Main.</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -31,7 +31,7 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             color: var(--text);
             background-color: var(--secondary);
             line-height: 1.6;
@@ -415,15 +415,20 @@
         }
 
         .program-icon {
-            width: 48px;
-            height: 48px;
+            width: 54px;
+            height: 54px;
             background-color: var(--accent);
-            border-radius: 12px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 1.5rem;
-            color: var(--primary);
+            font-size: 1.625rem;
+            line-height: 1;
+        }
+
+        .program-card {
+            cursor: pointer;
         }
 
         .program-name {
@@ -1227,6 +1232,119 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Secondary program pills — clickable */
+        .secondary-item {
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .secondary-item:hover {
+            background-color: var(--primary);
+            color: var(--secondary);
+        }
+
+        /* Program Modal */
+        .program-modal-content {
+            background-color: var(--secondary);
+            width: 100%;
+            max-width: 860px;
+            border-radius: 2rem;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal.active .program-modal-content {
+            transform: translateY(0);
+        }
+
+        .program-modal-header {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .program-modal-header { height: 340px; }
+        }
+
+        .program-modal-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .program-modal-header-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%);
+        }
+
+        .program-modal-header-text {
+            position: absolute;
+            bottom: 1.75rem;
+            left: 2rem;
+            right: 2rem;
+            color: white;
+        }
+
+        .program-modal-emoji {
+            font-size: 2.25rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .program-modal-header-text h2 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .program-modal-tagline {
+            font-size: 1rem;
+            opacity: 0.85;
+            font-weight: 500;
+        }
+
+        .program-modal-body {
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        @media (min-width: 768px) {
+            .program-modal-body { padding: 2.5rem; }
+        }
+
+        .program-modal-desc {
+            color: var(--text-muted);
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .program-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.625rem;
+            margin-bottom: 2rem;
+        }
+
+        .program-highlight-tag {
+            background-color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
     </style>
 </head>
 <body>
@@ -1275,12 +1393,12 @@
     <section class="hero">
         <div class="hero-content">
             <h1 class="hero-headline reveal">
-                Bukan Sekadar Belajar Musik.<br>
-                <span style="color: var(--primary);">Di Sini, Kamu Tumbuh.</span>
+                Jadi Musisi.<br>
+                <span style="color: var(--primary);">Bukan Sekadar Bisa Main.</span>
             </h1>
             <p class="hero-subheadline reveal">
-                Contemporary music school di Cimahi dengan kurikulum internasional RSL Awards — 
-                untuk anak-anak, remaja, dan dewasa yang ingin menemukan suaranya sendiri.
+                Sekolah musik kontemporer di Cimahi dengan kurikulum RSL Awards internasional —
+                untuk anak-anak, remaja, dan siapa saja yang siap menemukan suara mereka sendiri.
             </p>
             <div class="hero-ctas reveal">
                 <a href="https://wa.me/6287708891665" class="btn btn-primary">Book Free Trial</a>
@@ -1300,15 +1418,15 @@
                 </div>
                 <div class="trust-item reveal" style="transition-delay: 0.1s;">
                     <svg class="trust-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    Est. 2013
+                    Berdiri Sejak 2013
                 </div>
                 <div class="trust-item reveal" style="transition-delay: 0.2s;">
                     <svg class="trust-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
-                    9 Instruments & Programs
+                    9 Instrumen &amp; Program
                 </div>
                 <div class="trust-item reveal" style="transition-delay: 0.3s;">
                     <svg class="trust-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                    International Curriculum
+                    Sertifikasi Internasional
                 </div>
             </div>
         </div>
@@ -1318,91 +1436,64 @@
     <section id="programs" class="programs section-padding">
         <div class="container">
             <div class="section-header reveal">
-                <h2 class="section-title">Program yang Kami Tawarkan</h2>
-                <p class="section-subtitle">Dari Premiere hingga Grade 8 — jalur belajar yang jelas, terstruktur, dan menyenangkan.</p>
+                <h2 class="section-title">Pilih Instrumenmu.</h2>
+                <p class="section-subtitle">9 instrumen, 4 kelas tambahan. Satu ekosistem yang dirancang untuk menumbuhkan musisi sungguhan.</p>
             </div>
 
             <div class="programs-grid">
-                <!-- Acoustic Guitar -->
-                <div class="program-card reveal">
-                    <div class="program-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
-                    </div>
+                <div class="program-card reveal" data-program="acoustic_guitar">
+                    <div class="program-icon">🎸</div>
                     <h3 class="program-name">Acoustic Guitar</h3>
-                    <p class="program-desc">Dari chord pertama sampai Grade 8 dengan teknik fingerpicking dan strumming yang solid.</p>
+                    <p class="program-desc">Dari chord pertama hingga fingerpicking yang memukau.</p>
                 </div>
-                <!-- Electric Guitar -->
-                <div class="program-card reveal" style="transition-delay: 0.1s;">
-                    <div class="program-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                    </div>
+                <div class="program-card reveal" style="transition-delay: 0.1s;" data-program="electric_guitar">
+                    <div class="program-icon">⚡</div>
                     <h3 class="program-name">Electric Guitar</h3>
-                    <p class="program-desc">Kuasai teknik lead dan rhythm dari blues, rock, sampai genre modern.</p>
+                    <p class="program-desc">Teknik, tone, dan ekspresi — semua dalam satu jalur belajar.</p>
                 </div>
-                <!-- Piano -->
-                <div class="program-card reveal" style="transition-delay: 0.2s;">
-                    <div class="program-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2" ry="2"></rect><line x1="2" y1="9" x2="22" y2="9"></line><line x1="6" y1="9" x2="6" y2="21"></line><line x1="10" y1="9" x2="10" y2="21"></line><line x1="14" y1="9" x2="14" y2="21"></line><line x1="18" y1="9" x2="18" y2="21"></line></svg>
-                    </div>
+                <div class="program-card reveal" style="transition-delay: 0.2s;" data-program="piano">
+                    <div class="program-icon">🎹</div>
                     <h3 class="program-name">Piano</h3>
-                    <p class="program-desc">Teknik klasik bertemu dengan repertoar modern yang relevan.</p>
+                    <p class="program-desc">Fondasi terkuat dalam musik. Mulai dari sini.</p>
                 </div>
-                <!-- Keyboard -->
-                <div class="program-card reveal">
-                    <div class="program-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><line x1="6" y1="10" x2="6" y2="14"></line><line x1="10" y1="10" x2="10" y2="14"></line><line x1="14" y1="10" x2="14" y2="14"></line><line x1="18" y1="10" x2="18" y2="14"></line></svg>
-                    </div>
+                <div class="program-card reveal" data-program="keyboard">
+                    <div class="program-icon">🎼</div>
                     <h3 class="program-name">Keyboard</h3>
-                    <p class="program-desc">Eksplorasi sound dan aransemen dengan pendekatan kontemporer yang menyenangkan.</p>
+                    <p class="program-desc">Eksplorasi sound tanpa batas, dari pop hingga aransemen kompleks.</p>
                 </div>
-                <!-- Vocal -->
-                <div class="program-card reveal" style="transition-delay: 0.1s;">
-                    <div class="program-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line><line x1="8" y1="22" x2="16" y2="22"></line></svg>
-                    </div>
+                <div class="program-card reveal" style="transition-delay: 0.1s;" data-program="vocal">
+                    <div class="program-icon">🎤</div>
                     <h3 class="program-name">Vocal</h3>
-                    <p class="program-desc">Temukan dan kuatkan suaramu dengan teknik pernapasan dan kesehatan vokal yang benar.</p>
+                    <p class="program-desc">Suaramu sudah ada. Kami bantu kamu menemukannya.</p>
                 </div>
-                <!-- Violin -->
-                <div class="program-card reveal" style="transition-delay: 0.2s;">
-                    <div class="program-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18M9 9a3 3 0 0 0 4.24 4.24"></path><path d="M10.58 5.17a5 5 0 0 1 7.07 7.07"></path><path d="M3 7l4 4"></path><path d="M17 17l4 4"></path></svg>
-                    </div>
+                <div class="program-card reveal" style="transition-delay: 0.2s;" data-program="violin">
+                    <div class="program-icon">🎻</div>
                     <h3 class="program-name">Violin</h3>
-                    <p class="program-desc">Keindahan yang dilatih dengan presisi dan perasaan mendalam.</p>
+                    <p class="program-desc">Teknik presisi, ekspresi tanpa batas.</p>
                 </div>
-                <!-- Drums -->
-                <div class="program-card reveal">
-                    <div class="program-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2v20"></path><path d="M2 12h20"></path></svg>
-                    </div>
+                <div class="program-card reveal" data-program="drums">
+                    <div class="program-icon">🥁</div>
                     <h3 class="program-name">Drums</h3>
-                    <p class="program-desc">Ritme adalah bahasa tersendiri. Kuasai beat, koordinasi, dan dinamika.</p>
+                    <p class="program-desc">Ritme bukan hanya didengar — tapi dirasakan.</p>
                 </div>
-                <!-- Bass -->
-                <div class="program-card reveal" style="transition-delay: 0.1s;">
-                    <div class="program-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path><line x1="7" y1="20" x2="17" y2="20"></line></svg>
-                    </div>
+                <div class="program-card reveal" style="transition-delay: 0.1s;" data-program="bass">
+                    <div class="program-icon">🎵</div>
                     <h3 class="program-name">Bass</h3>
-                    <p class="program-desc">Jadilah fondasi yang kuat — kuasai groove dan teknik bass dari berbagai genre.</p>
+                    <p class="program-desc">Fondasi sebuah band. Peran yang tak tergantikan.</p>
                 </div>
-                <!-- Saxophone -->
-                <div class="program-card reveal" style="transition-delay: 0.2s;">
-                    <div class="program-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M8 6l4-4 4 4M8 18l4 4 4-4"></path></svg>
-                    </div>
+                <div class="program-card reveal" style="transition-delay: 0.2s;" data-program="saxophone">
+                    <div class="program-icon">🎷</div>
                     <h3 class="program-name">Saxophone</h3>
-                    <p class="program-desc">Ekspresikan dirimu lewat instrumen tiup yang penuh karakter dan jiwa.</p>
+                    <p class="program-desc">Instrumen yang berbicara langsung ke hati.</p>
                 </div>
             </div>
 
             <div class="secondary-programs reveal">
-                <span class="secondary-item">Theory Class</span>
-                <span class="secondary-item">Students Band</span>
-                <span class="secondary-item">Music Production</span>
-                <span class="secondary-item">Recording Class</span>
-                <span class="secondary-item">Annual Home Concert</span>
+                <button class="secondary-item" data-program="theory_class">📚 Theory Class</button>
+                <button class="secondary-item" data-program="students_band">🎶 Students Band</button>
+                <button class="secondary-item" data-program="music_production">🎚️ Music Production</button>
+                <button class="secondary-item" data-program="recording_class">🎙️ Recording Class</button>
+                <button class="secondary-item" data-program="home_concert">🎭 Annual Home Concert</button>
             </div>
         </div>
     </section>
@@ -1416,9 +1507,9 @@
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                         RSL Awards Accredited Center
                     </div>
-                    <h2 class="rsl-title">Kurikulum Bertaraf Internasional</h2>
+                    <h2 class="rsl-title">Standar Dunia, Tepat di Cimahi.</h2>
                     <p class="rsl-text">
-                        Rexa Music School adalah RSL Awards Accredited Center — salah satu dari sedikit sekolah musik di West Java yang menggunakan sistem grading internasional untuk musik kontemporer. Dari level Premiere hingga Grade 8, setiap siswa punya jalur yang jelas untuk berkembang dan mendapatkan sertifikasi yang diakui global.
+                        RMS adalah RSL Awards Accredited Center — satu-satunya di Cimahi, dan salah satu dari sedikit di West Java. RSL Awards adalah sistem grading musik kontemporer dari UK yang diakui di 50+ negara. Dari level Premiere hingga Grade 8, setiap siswa punya jalur yang jelas, terstruktur, dan berujung pada sertifikasi yang diakui secara global.
                     </p>
                     <a href="https://wa.me/6287708891665" class="text-link">
                         Pelajari Lebih Lanjut 
@@ -1436,7 +1527,7 @@
     <section class="why-rms section-padding">
         <div class="container">
             <div class="section-header reveal">
-                <h2 class="section-title">Kenapa Rexa Music School?</h2>
+                <h2 class="section-title">Beda dari Awal.</h2>
             </div>
 
             <div class="pillars-grid">
@@ -1445,26 +1536,26 @@
                         <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                     </div>
                     <h3 class="pillar-title">Knowledge</h3>
-                    <p class="pillar-desc">Kurikulum berbasis teori yang solid — bukan sekadar hafal lagu.</p>
+                    <p class="pillar-desc">Teori yang dipahami, bukan dihafal. Karena musisi sejati mengerti apa yang mereka mainkan.</p>
                 </div>
                 <div class="pillar-item reveal" style="transition-delay: 0.1s;">
                     <div class="pillar-icon">
                         <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                     </div>
                     <h3 class="pillar-title">Skills</h3>
-                    <p class="pillar-desc">Latihan praktikal yang konsisten, terstruktur, dan selalu relevan.</p>
+                    <p class="pillar-desc">Teknik yang dilatih, bukan dicontek. Konsisten, terstruktur, dan relevan dengan musik yang kamu suka.</p>
                 </div>
                 <div class="pillar-item reveal" style="transition-delay: 0.2s;">
                     <div class="pillar-icon">
                         <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.84-8.84 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     </div>
                     <h3 class="pillar-title">Attitude</h3>
-                    <p class="pillar-desc">Kami percaya karakter dan kecerdasan emosional adalah bagian dari belajar musik.</p>
+                    <p class="pillar-desc">Karakter terbentuk lewat musik. Disiplin, percaya diri, dan empati — ini yang kami tanamkan sejak hari pertama.</p>
                 </div>
             </div>
 
             <div class="quote-block reveal">
-                <p class="quote-text">"Musik bukan hanya soal teknik. It's about who you become in the process."</p>
+                <p class="quote-text">"Musik bukan soal seberapa cepat kamu bisa main. It's about who you become along the way."</p>
             </div>
         </div>
     </section>
@@ -1473,24 +1564,24 @@
     <section class="audience section-padding">
         <div class="container">
             <div class="section-header reveal">
-                <h2 class="section-title">Untuk Siapa RMS?</h2>
+                <h2 class="section-title">Musik untuk Semua Tahap Hidup.</h2>
             </div>
 
             <div class="audience-grid">
                 <div class="audience-card reveal">
                     <span class="audience-emoji">🧒</span>
-                    <h3 class="audience-title">Untuk Anak & Remaja</h3>
-                    <p class="audience-desc">Bangun disiplin, kreativitas, dan kepercayaan diri lewat musik — dalam lingkungan yang aman dan menyenangkan.</p>
+                    <h3 class="audience-title">Untuk Anak &amp; Remaja</h3>
+                    <p class="audience-desc">Musik membangun disiplin, kreativitas, dan kepercayaan diri — tiga hal yang anak-anak butuhkan seumur hidup, bukan hanya di panggung.</p>
                 </div>
                 <div class="audience-card reveal" style="transition-delay: 0.1s;">
                     <span class="audience-emoji">🎸</span>
                     <h3 class="audience-title">Untuk Dewasa Muda</h3>
-                    <p class="audience-desc">Nggak ada kata terlambat. Musik adalah cara terbaik untuk reconnect dengan diri sendiri di tengah kesibukan.</p>
+                    <p class="audience-desc">Tidak ada kata terlambat. Musik adalah cara terbaik untuk menemukan kembali dirimu di tengah rutinitas yang padat.</p>
                 </div>
                 <div class="audience-card reveal" style="transition-delay: 0.2s;">
                     <span class="audience-emoji">👨‍👩‍👧</span>
                     <h3 class="audience-title">Untuk Orang Tua</h3>
-                    <p class="audience-desc">Lebih dari les musik — investasi untuk tumbuh kembang anak secara holistik dengan standar internasional.</p>
+                    <p class="audience-desc">Ini bukan sekadar les musik — ini investasi untuk tumbuh kembang anak secara holistik, dengan kurikulum internasional dan komunitas yang mendukung.</p>
                 </div>
             </div>
         </div>
@@ -1500,7 +1591,7 @@
     <section class="testimonials section-padding">
         <div class="container">
             <div class="section-header reveal">
-                <h2 class="section-title">Cerita dari Siswa & Orang Tua Kami</h2>
+                <h2 class="section-title">Kata Mereka yang Sudah Merasakannya.</h2>
             </div>
 
             <div class="testimonials-grid">
@@ -1533,10 +1624,10 @@
     <section class="free-trial-cta section-padding">
         <div class="container">
             <div class="cta-container reveal">
-                <h2 class="cta-title">Mulai dengan Satu Langkah Kecil.</h2>
-                <p class="cta-subtitle">Coba satu sesi gratis — tanpa komitmen, tanpa tekanan. Biar musiknya yang bicara.</p>
+                <h2 class="cta-title">Mulai Sekarang. Gratis.</h2>
+                <p class="cta-subtitle">Satu sesi percobaan, tanpa komitmen, tanpa tekanan. Cukup datang — biar musiknya yang bicara.</p>
                 <a href="https://wa.me/6287708891665" class="btn btn-white btn-lg" style="font-size: 1.25rem; padding: 1.25rem 3rem;">Daftar Free Trial Sekarang</a>
-                <p class="cta-microcopy">Hubungi kami via WhatsApp atau isi form pendaftaran</p>
+                <p class="cta-microcopy">Hubungi via WhatsApp · Senin–Jumat 11.00–19.00 · Sabtu 09.00–15.00</p>
             </div>
         </div>
     </section>
@@ -1549,12 +1640,12 @@
                     <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop" alt="Rexa Music School Studio" referrerPolicy="no-referrer">
                 </div>
                 <div class="about-content reveal" style="transition-delay: 0.2s;">
-                    <h2 class="about-title">Tentang Rexa Music School</h2>
+                    <h2 class="about-title">Lebih dari Sekolah Musik.</h2>
                     <p class="about-text">
-                        Didirikan tahun 2013 di Cimahi, Rexa Music School lahir dari keyakinan bahwa musik bukan sekadar keterampilan — tapi alat untuk tumbuh. Berakar dari musik terapi dan bernaung di bawah Yayasan Soteria Terpadu, kami membangun sekolah yang peduli pada perkembangan manusia secara utuh.
+                        Berdiri sejak 2013 di Cimahi, Rexa Music School lahir dari satu keyakinan: musik bukan sekadar keterampilan, tapi alat untuk tumbuh. Berakar dari musik terapi dan bernaung di bawah Yayasan Soteria Terpadu, kami membangun sekolah yang peduli pada perkembangan manusia secara utuh — bukan hanya teknik bermain.
                     </p>
                     <p class="about-text">
-                        Hari ini, RMS adalah satu-satunya contemporary music school di Cimahi dengan akreditasi RSL Awards internasional — dan kami terus berkembang untuk melayani lebih banyak siswa di West Java.
+                        Hari ini, RMS adalah satu-satunya contemporary music school di Cimahi dengan akreditasi RSL Awards internasional. Kami terus berkembang untuk melayani lebih banyak keluarga di West Java yang percaya bahwa musik adalah investasi terbaik untuk tumbuh kembang anak.
                     </p>
                     <a href="https://wa.me/6287708891665" class="text-link">
                         Pelajari Lebih Lanjut 
@@ -1569,8 +1660,8 @@
     <section id="instructors" class="instructors section-padding">
         <div class="container">
             <div class="section-header reveal">
-                <h2 class="section-title">Instruktur Kami</h2>
-                <p class="section-subtitle">Belajar langsung dari para profesional yang berdedikasi dan berpengalaman.</p>
+                <h2 class="section-title">Belajar dari yang Terbaik.</h2>
+                <p class="section-subtitle">Bukan sekadar pengajar — mereka adalah musisi, mentor, dan motivator.</p>
             </div>
 
             <div class="instructors-grid">
@@ -1621,8 +1712,8 @@
     <section id="faq" class="faq section-padding">
         <div class="container">
             <div class="section-header reveal">
-                <h2 class="section-title">Pertanyaan yang Sering Ditanyakan</h2>
-                <p class="section-subtitle">Kalau masih ada yang kurang jelas, hubungi kami langsung via WhatsApp.</p>
+                <h2 class="section-title">Pertanyaan yang Sering Ditanyakan.</h2>
+                <p class="section-subtitle">Masih ada yang kurang jelas? Hubungi kami langsung via WhatsApp — kami siap membantu.</p>
             </div>
 
             <div class="faq-container reveal">
@@ -1761,13 +1852,13 @@
     <section id="contact" class="contact section-padding">
         <div class="container">
             <div class="section-header reveal">
-                <h2 class="section-title">Temukan Kami</h2>
+                <h2 class="section-title">Temukan Kami.</h2>
             </div>
 
             <div class="contact-container">
                 <div class="map-placeholder reveal">
                     <!-- Google Maps Embed with Plus Code Location -->
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.12196628965!2d107.54133467499625!3d-6.876594993122194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e44078864f7b%3A0x7d8a6e8b8b8b8b8b!2sRexa%20Music%20School!5e0!3m2!1sen!2sid!4v1712370000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://maps.google.com/maps?q=Jl.+Purbasari+No.+3,+Padasuka,+Cimahi+Utara,+Kota+Cimahi,+Jawa+Barat&output=embed&z=17&hl=id" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="contact-info reveal" style="transition-delay: 0.2s;">
                     <div class="contact-method">
@@ -1827,7 +1918,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <span class="logo">Rexa Music School</span>
-                    <p class="footer-tagline">"Where You Find Your Sound"</p>
+                    <p class="footer-tagline">Jadi Musisi. Bukan Sekadar Bisa Main.</p>
                     <div class="social-links">
                         <a href="#" class="social-icon" aria-label="Instagram">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
@@ -1839,7 +1930,7 @@
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.14 1 12 1 12s0 3.86.42 5.58a2.78 2.78 0 0 0 1.94 2c1.72.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.86 23 12 23 12s0-3.86-.42-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg>
                         </a>
                         <a href="https://wa.me/6287708891665" class="social-icon" aria-label="WhatsApp">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-14.7 8.38 8.38 0 0 1 3.8.9L21 3.5Z"></path></svg>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.38 1.26 4.8L2.05 22l5.43-1.27c1.37.73 2.93 1.14 4.56 1.14 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 1.8c2.2 0 4.27.86 5.83 2.42a8.17 8.17 0 012.4 5.7c0 4.46-3.63 8.09-8.09 8.09-1.44 0-2.85-.39-4.07-1.12l-.29-.17-3 .79.8-2.93-.19-.3a8.12 8.12 0 01-1.24-4.36c.01-4.46 3.64-8.12 8.1-8.12zm-2.58 4.2c-.2 0-.51.07-.78.37-.27.3-1.02 1-.02 2.44s1.96 2.93 3.36 3.93c1.4 1 2.95 1.5 3.41 1.5.46 0 1.35-.24 1.58-.58.23-.34.23-.82.16-.93-.07-.11-.27-.18-.58-.32-.31-.14-1.82-.9-2.1-1-.28-.1-.49-.14-.69.14-.2.28-.79.99-.97 1.19-.18.2-.36.22-.67.08-.31-.14-1.3-.48-2.48-1.53-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.47.13-.63.14-.14.31-.36.46-.54.15-.18.2-.31.3-.51.1-.2.05-.38-.02-.53-.07-.15-.69-1.66-.95-2.27-.25-.6-.5-.51-.69-.51h-.74z"/></svg>
                         </a>
                     </div>
                 </div>
@@ -1869,6 +1960,27 @@
             </div>
         </div>
     </footer>
+
+    <!-- Program Modal -->
+    <div id="program-modal" class="modal">
+        <div class="program-modal-content">
+            <button class="modal-close" id="program-modal-close" aria-label="Tutup">&times;</button>
+            <div class="program-modal-header">
+                <img id="pm-image" src="" alt="">
+                <div class="program-modal-header-overlay"></div>
+                <div class="program-modal-header-text">
+                    <span id="pm-emoji" class="program-modal-emoji"></span>
+                    <h2 id="pm-name"></h2>
+                    <p id="pm-tagline" class="program-modal-tagline"></p>
+                </div>
+            </div>
+            <div class="program-modal-body">
+                <p id="pm-desc" class="program-modal-desc"></p>
+                <div id="pm-highlights" class="program-highlights"></div>
+                <a href="https://wa.me/6287708891665" class="btn btn-primary" target="_blank" rel="noopener">Daftar Sekarang →</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Instructor Modal -->
     <div id="instructor-modal" class="modal">
@@ -1991,6 +2103,146 @@
                     });
                 }
             });
+        });
+
+        // Program Modal Data
+        const programData = {
+            acoustic_guitar: {
+                name: 'Acoustic Guitar', emoji: '🎸',
+                tagline: 'Di mana semua dimulai.',
+                desc: 'Acoustic guitar adalah pintu masuk paling natural ke dunia musik. Di RMS, kamu belajar dari chord dasar hingga teknik fingerpicking dan strumming yang kompleks — menggunakan kurikulum RSL Awards dari level Premiere hingga Grade 8 yang diakui secara internasional.',
+                highlights: ['Cocok mulai usia 6 tahun', 'Level Premiere–Grade 8', 'Teknik fingerpicking & strumming', 'Repertoar pop, folk, dan klasik', 'Sertifikasi RSL Awards'],
+                image: 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=2070&auto=format&fit=crop',
+            },
+            electric_guitar: {
+                name: 'Electric Guitar', emoji: '⚡',
+                tagline: 'Teknik yang bicara, tone yang berkarakter.',
+                desc: 'Electric guitar membuka dunia ekspresi yang lebih luas — dari blues yang emosional hingga riff rock yang powerful. Kamu belajar teknik lead, rhythm, efek, dan teori yang mendukung permainanmu di atas panggung maupun studio.',
+                highlights: ['Cocok mulai usia 8 tahun', 'Teknik lead & rhythm', 'Pengenalan efek dan tone shaping', 'Genre rock, blues, pop, metal', 'Sertifikasi RSL Awards'],
+                image: 'https://images.unsplash.com/photo-1525201548942-d8732f6617a0?q=80&w=2070&auto=format&fit=crop',
+            },
+            piano: {
+                name: 'Piano', emoji: '🎹',
+                tagline: 'Fondasi terkuat dalam musik.',
+                desc: 'Piano bukan sekadar instrumen — ini adalah bahasa universal musik itu sendiri. Siswa RMS belajar teknik klasik yang terstruktur sambil memainkan repertoar kontemporer yang relevan, dari lagu pop favorit hingga komposisi yang lebih kompleks.',
+                highlights: ['Cocok mulai usia 5 tahun', 'Pendekatan klasik + kontemporer', 'Teori musik terintegrasi', 'Level Premiere–Grade 8', 'Sertifikasi RSL Awards'],
+                image: 'https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=2070&auto=format&fit=crop',
+            },
+            keyboard: {
+                name: 'Keyboard', emoji: '🎼',
+                tagline: 'Eksplorasi sound tanpa batas.',
+                desc: 'Keyboard membuka pintu ke dunia produksi dan aransemen modern. Di luar teknik bermain, kamu juga belajar memahami sound, layer, dan cara menciptakan nuansa yang tepat — skill yang sangat relevan di era musik digital ini.',
+                highlights: ['Cocok mulai usia 6 tahun', 'Eksplorasi berbagai sound & preset', 'Dasar aransemen modern', 'Genre pop, R&B, electronic', 'Relevan untuk produksi musik'],
+                image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop',
+            },
+            vocal: {
+                name: 'Vocal', emoji: '🎤',
+                tagline: 'Suaramu sudah ada. Kami bantu kamu menemukannya.',
+                desc: 'Vokal bukan hanya soal suara yang bagus — ini soal teknik yang benar, kesehatan pita suara, dan keberanian untuk tampil. Di RMS, kamu belajar pernapasan diafragma, resonansi, pitch accuracy, dan cara membawakan lagu dengan ekspresi yang autentik.',
+                highlights: ['Cocok mulai usia 7 tahun', 'Teknik pernapasan & resonansi', 'Kesehatan vokal', 'Genre pop, R&B, musical', 'Sertifikasi RSL Awards'],
+                image: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=2070&auto=format&fit=crop',
+            },
+            violin: {
+                name: 'Violin', emoji: '🎻',
+                tagline: 'Teknik presisi, ekspresi tanpa batas.',
+                desc: 'Violin adalah instrumen yang menuntut presisi sekaligus kepekaan rasa. Program violin di RMS menggabungkan teknik yang terstruktur — postur, bowing, intonasi — dengan repertoar yang menarik, agar belajar tetap menyenangkan di setiap levelnya.',
+                highlights: ['Cocok mulai usia 5 tahun', 'Teknik bowing & intonasi', 'Postur dan teknik tangan yang benar', 'Repertoar klasik & kontemporer', 'Sertifikasi RSL Awards'],
+                image: 'https://images.unsplash.com/photo-1465821185615-20b3c2fbf41b?q=80&w=2070&auto=format&fit=crop',
+            },
+            drums: {
+                name: 'Drums', emoji: '🥁',
+                tagline: 'Ritme bukan hanya didengar — tapi dirasakan.',
+                desc: 'Bermain drums melatih koordinasi, timing, dan kepekaan musikal secara bersamaan. Di RMS, kamu belajar dari rudiments dasar hingga groove kompleks di berbagai genre, dengan pendekatan yang membangun kepercayaan diri tampil di atas panggung.',
+                highlights: ['Cocok mulai usia 6 tahun', 'Koordinasi tangan & kaki', 'Rudiments & groove', 'Genre pop, rock, jazz, latin', 'Sertifikasi RSL Awards'],
+                image: 'https://images.unsplash.com/photo-1524230572899-a752b3835840?q=80&w=2070&auto=format&fit=crop',
+            },
+            bass: {
+                name: 'Bass', emoji: '🎵',
+                tagline: 'Fondasi sebuah band. Peran yang tak tergantikan.',
+                desc: 'Bass adalah tulang punggung dari setiap ensemble musik. Di RMS, kamu belajar lebih dari sekadar mengikuti chord — tapi memahami groove, pocket, dan bagaimana bass menciptakan karakter sebuah lagu dari bawah ke atas.',
+                highlights: ['Cocok mulai usia 8 tahun', 'Teknik fingerstyle & pick', 'Groove & pocket playing', 'Genre pop, funk, rock, jazz', 'Teori harmoni untuk bassist'],
+                image: 'https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?q=80&w=2070&auto=format&fit=crop',
+            },
+            saxophone: {
+                name: 'Saxophone', emoji: '🎷',
+                tagline: 'Instrumen yang berbicara langsung ke hati.',
+                desc: 'Saxophone punya karakter suara yang khas — hangat, ekspresif, dan penuh jiwa. Program saxophone di RMS membangun teknik embouchure, kontrol napas, dan musikalitas yang membuat setiap nada yang kamu mainkan punya cerita.',
+                highlights: ['Cocok mulai usia 8 tahun', 'Teknik embouchure & breath control', 'Genre jazz, pop, R&B, klasik', 'Improvisasi dasar', 'Tersedia alto & tenor saxophone'],
+                image: 'https://images.unsplash.com/photo-1461784180009-27c171c6aed7?q=80&w=2070&auto=format&fit=crop',
+            },
+            theory_class: {
+                name: 'Theory Class', emoji: '📚',
+                tagline: 'Pahami bahasa musik.',
+                desc: 'Musisi yang baik bukan hanya bisa bermain — mereka mengerti apa yang mereka mainkan. Theory Class di RMS mengajarkan notasi, harmoni, ritme, dan ear training secara sistematis, agar kamu bisa belajar lebih cepat dan bermain lebih ekspresif di instrumen apapun.',
+                highlights: ['Tersedia untuk semua instrumen', 'Notasi & sight-reading', 'Harmoni & akor', 'Ear training', 'Mendukung persiapan ujian RSL'],
+                image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop',
+            },
+            students_band: {
+                name: 'Students Band', emoji: '🎶',
+                tagline: 'Bermain bersama, tumbuh bersama.',
+                desc: 'Bermain solo itu hebat — tapi bermain dalam band adalah pengalaman yang berbeda sepenuhnya. Students Band mengajarkan cara mendengarkan satu sama lain, menjaga groove bersama, dan membangun chemistry yang membuat musik terasa hidup.',
+                highlights: ['Terbuka untuk semua instrumen', 'Latihan ensemble mingguan', 'Repertoar lagu-lagu populer', 'Persiapan tampil di Annual Home Concert', 'Membangun kerja sama & komunikasi'],
+                image: 'https://images.unsplash.com/photo-1504704911898-68304a7d2807?q=80&w=2070&auto=format&fit=crop',
+            },
+            music_production: {
+                name: 'Music Production', emoji: '🎚️',
+                tagline: 'Dari ide jadi track siap rilis.',
+                desc: 'Di era digital ini, kemampuan produksi musik adalah skill yang sangat berharga. Kamu belajar menggunakan DAW profesional, memahami sound design, mixing dasar, dan bagaimana mengubah inspirasi menjadi karya musik yang siap didengar dunia.',
+                highlights: ['Cocok mulai usia 13 tahun', 'DAW (Digital Audio Workstation)', 'Komposisi & aransemen digital', 'Sound design & mixing dasar', 'Produksi lagu dari nol hingga selesai'],
+                image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop',
+            },
+            recording_class: {
+                name: 'Recording Class', emoji: '🎙️',
+                tagline: 'Dengarkan dirimu dari perspektif baru.',
+                desc: 'Recording Class memberi kamu pengalaman rekaman di studio yang sesungguhnya. Kamu belajar teknik mikrofon, akustik ruangan, proses tracking, dan dasar mixing — sekaligus mendapatkan rekaman profesional dari penampilanmu sendiri.',
+                highlights: ['Pengalaman studio rekaman nyata', 'Teknik mikrofon & akustik', 'Proses tracking & overdubbing', 'Dasar mixing & mastering', 'Tersedia untuk semua instrumen'],
+                image: 'https://images.unsplash.com/photo-1598653222000-6b7b7a552625?q=80&w=2070&auto=format&fit=crop',
+            },
+            home_concert: {
+                name: 'Annual Home Concert', emoji: '🎭',
+                tagline: 'Momen tampil yang selalu ditunggu.',
+                desc: 'Annual Home Concert adalah momen paling istimewa di RMS — di mana semua siswa tampil di atas panggung di hadapan keluarga dan komunitas. Ini bukan sekadar pertunjukan; ini adalah bukti nyata dari perjalanan belajar seorang musisi muda.',
+                highlights: ['Diselenggarakan setahun sekali', 'Terbuka untuk semua siswa', 'Panggung profesional', 'Disaksikan keluarga & komunitas RMS', 'Momen yang tak terlupakan'],
+                image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop',
+            },
+        };
+
+        // Program Modal Logic
+        const programModal = document.getElementById('program-modal');
+        const programModalClose = document.getElementById('program-modal-close');
+
+        const openProgramModal = (id) => {
+            const d = programData[id];
+            if (!d) return;
+            document.getElementById('pm-image').src = d.image;
+            document.getElementById('pm-image').alt = d.name;
+            document.getElementById('pm-emoji').textContent = d.emoji;
+            document.getElementById('pm-name').textContent = d.name;
+            document.getElementById('pm-tagline').textContent = d.tagline;
+            document.getElementById('pm-desc').textContent = d.desc;
+            document.getElementById('pm-highlights').innerHTML = d.highlights
+                .map(h => `<span class="program-highlight-tag">${h}</span>`).join('');
+            programModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeProgramModal = () => {
+            programModal.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        document.querySelectorAll('.program-card[data-program]').forEach(card => {
+            card.addEventListener('click', () => openProgramModal(card.dataset.program));
+        });
+
+        document.querySelectorAll('.secondary-item[data-program]').forEach(btn => {
+            btn.addEventListener('click', () => openProgramModal(btn.dataset.program));
+        });
+
+        programModalClose.addEventListener('click', closeProgramModal);
+        programModal.addEventListener('click', (e) => { if (e.target === programModal) closeProgramModal(); });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && programModal.classList.contains('active')) closeProgramModal();
         });
 
         // Instructor Modal Logic
