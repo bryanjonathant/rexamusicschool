@@ -1,0 +1,2035 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rexa Music School | Where You Find Your Sound</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #8B0000;
+            --secondary: #FFFFFF;
+            --accent: #F9F6F2;
+            --text: #1A1A1A;
+            --text-muted: #4A4A4A;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background-color: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-padding {
+            padding: 5rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .section-padding {
+                padding: 8rem 0;
+            }
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 2rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--secondary);
+        }
+
+        .btn-primary:hover {
+            background-color: #660000;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .btn-white {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+
+        .btn-white:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--secondary);
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 1rem 0;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 0.75rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        /* Mobile Menu Drawer */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--secondary);
+            z-index: 1001;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 2rem;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .mobile-drawer.active {
+            right: 0;
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px;
+        }
+
+        @media (min-width: 1024px) {
+            .hero {
+                flex-direction: row;
+            }
+        }
+
+        .hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+            background-color: var(--secondary);
+        }
+
+        @media (min-width: 1024px) {
+            .hero-content {
+                padding: 0 5rem;
+            }
+        }
+
+        .hero-headline {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        @media (min-width: 768px) {
+            .hero-headline {
+                font-size: 4rem;
+            }
+        }
+
+        .hero-subheadline {
+            font-size: 1.125rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-muted);
+            max-width: 540px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-height: 400px;
+            background-image: url('https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            background-color: var(--accent);
+            padding: 2rem 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .trust-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .trust-icon {
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        /* Programs Section */
+        .programs {
+            background-color: var(--secondary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.125rem;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .programs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .programs-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .program-card {
+            background-color: var(--secondary);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--primary);
+            transform: scaleY(0);
+            transition: var(--transition);
+            transform-origin: bottom;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .program-card:hover::after {
+            transform: scaleY(1);
+        }
+
+        .program-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .program-name {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .program-desc {
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+        }
+
+        .secondary-programs {
+            margin-top: 4rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .secondary-item {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--accent);
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        /* RSL Awards Section */
+        .rsl-section {
+            background-color: var(--accent);
+        }
+
+        .rsl-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .rsl-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .rsl-content {
+            max-width: 540px;
+        }
+
+        .rsl-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: var(--secondary);
+            border-radius: 0.5rem;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .rsl-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .rsl-text {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.0625rem;
+        }
+
+        .rsl-image {
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .text-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.9375rem;
+        }
+
+        .text-link:hover gap {
+            gap: 0.75rem;
+        }
+
+        /* Why RMS Section */
+        .why-rms {
+            background-color: var(--secondary);
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        @media (min-width: 1024px) {
+            .pillars-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .pillar-item {
+            text-align: center;
+        }
+
+        .pillar-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1.5rem;
+            color: var(--primary);
+        }
+
+        .pillar-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .pillar-desc {
+            color: var(--text-muted);
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .quote-block {
+            background-color: var(--primary);
+            color: var(--secondary);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 2rem;
+        }
+
+        .quote-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .quote-text {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Audience Section */
+        .audience {
+            background-color: var(--accent);
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .audience-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .audience-card {
+            background-color: var(--secondary);
+            padding: 3rem 2rem;
+            border-radius: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        .audience-emoji {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .audience-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .audience-desc {
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--secondary);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .testimonial-card {
+            padding: 2.5rem;
+            background-color: var(--accent);
+            border-radius: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .testimonial-quote {
+            font-style: italic;
+            margin-bottom: 2rem;
+            color: var(--text);
+            font-size: 1.0625rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-name {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .author-role {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* Free Trial Section */
+        .free-trial-cta {
+            background-color: var(--primary);
+            color: var(--secondary);
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .cta-title {
+                font-size: 3.5rem;
+            }
+        }
+
+        .cta-subtitle {
+            font-size: 1.125rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .cta-microcopy {
+            margin-top: 1.5rem;
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--secondary);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .about-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .about-image {
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-content {
+            max-width: 540px;
+        }
+
+        .about-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.0625rem;
+        }
+
+        /* Instructors Section */
+        .instructors {
+            background-color: var(--secondary);
+        }
+
+        .instructors-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .instructors-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .instructor-card {
+            text-align: center;
+        }
+
+        .instructor-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .instructor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .instructor-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .instructor-role {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .instructor-bio {
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background-color: var(--secondary);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background-color: transparent;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary);
+        }
+
+        .faq-icon {
+            color: var(--primary);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-answer-content {
+            padding-bottom: 1.5rem;
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .faq-footer {
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .faq-footer-text {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--accent);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+
+        @media (min-width: 1024px) {
+            .contact-container {
+                grid-template-columns: 1.5fr 1fr;
+            }
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 450px;
+            background-color: #e0e0e0;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .map-placeholder iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-method {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .contact-label {
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        .contact-value {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text);
+            color: var(--secondary);
+            padding: 5rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1.5fr 1fr 1fr;
+            }
+        }
+
+        .footer-brand .logo {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .footer-tagline {
+            opacity: 0.7;
+            font-size: 0.9375rem;
+            max-width: 240px;
+        }
+
+        .footer-title {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-link {
+            font-size: 0.875rem;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.8125rem;
+            opacity: 0.5;
+        }
+
+        /* Utilities */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: var(--secondary);
+            width: 100%;
+            max-width: 900px;
+            border-radius: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .modal-body {
+                grid-template-columns: 1fr 1.2fr;
+            }
+        }
+
+        .modal-image-container {
+            height: 350px;
+            background-color: #f0f0f0;
+        }
+
+        @media (min-width: 768px) {
+            .modal-image-container {
+                height: 550px;
+            }
+        }
+
+        .modal-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-info {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .modal-info {
+                padding: 4rem;
+            }
+        }
+
+        .modal-info h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            line-height: 1.1;
+        }
+
+        .modal-info .modal-role {
+            display: block;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+        }
+
+        .modal-bio-full {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            font-size: 1.0625rem;
+        }
+
+        .modal-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding-top: 2rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-value {
+            color: var(--text);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .instructor-card {
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .instructor-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .instructor-card:hover .instructor-image img {
+            transform: scale(1.05);
+        }
+
+        .instructor-card .view-profile-hint {
+            margin-top: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            transform: translateY(5px);
+            transition: var(--transition);
+        }
+
+        .instructor-card:hover .view-profile-hint {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Rexa Music School</a>
+            
+            <ul class="nav-links">
+                <li><a href="#programs" class="nav-link">Programs</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#instructors" class="nav-link">Instructors</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="#rsl" class="nav-link">RSL Awards</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="https://wa.me/628123456789" class="btn btn-primary">Book Free Trial</a></li>
+            </ul>
+
+            <button class="mobile-menu-btn" id="menu-toggle" aria-label="Toggle Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="mobile-drawer" id="mobile-drawer">
+        <div style="display: flex; justify-content: flex-end;">
+            <button class="mobile-menu-btn" id="menu-close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <ul style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <li><a href="#programs" class="nav-link" style="font-size: 1.25rem;">Programs</a></li>
+            <li><a href="#about" class="nav-link" style="font-size: 1.25rem;">About</a></li>
+            <li><a href="#instructors" class="nav-link" style="font-size: 1.25rem;">Instructors</a></li>
+            <li><a href="#faq" class="nav-link" style="font-size: 1.25rem;">FAQ</a></li>
+            <li><a href="#rsl" class="nav-link" style="font-size: 1.25rem;">RSL Awards</a></li>
+            <li><a href="#contact" class="nav-link" style="font-size: 1.25rem;">Contact</a></li>
+            <li><a href="https://wa.me/628123456789" class="btn btn-primary" style="width: 100%;">Book Free Trial</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-headline reveal">
+                Bukan Sekadar Belajar Musik.<br>
+                <span style="color: var(--primary);">Di Sini, Kamu Tumbuh.</span>
+            </h1>
+            <p class="hero-subheadline reveal">
+                Contemporary music school di Cimahi dengan kurikulum internasional RSL Awards — 
+                untuk anak-anak, remaja, dan dewasa yang ingin menemukan suaranya sendiri.
+            </p>
+            <div class="hero-ctas reveal">
+                <a href="https://wa.me/628123456789" class="btn btn-primary">Book Free Trial</a>
+                <a href="#programs" class="btn btn-outline">Explore Programs</a>
+            </div>
+        </div>
+        <div class="hero-image reveal" style="transition-delay: 0.2s;"></div>
+    </section>
+
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-item reveal">
+                    <svg class="trust-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                    RSL Awards Accredited
+                </div>
+                <div class="trust-item reveal" style="transition-delay: 0.1s;">
+                    <svg class="trust-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    Est. 2013
+                </div>
+                <div class="trust-item reveal" style="transition-delay: 0.2s;">
+                    <svg class="trust-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+                    6 Instruments & Programs
+                </div>
+                <div class="trust-item reveal" style="transition-delay: 0.3s;">
+                    <svg class="trust-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    International Curriculum
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Programs Section -->
+    <section id="programs" class="programs section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Program yang Kami Tawarkan</h2>
+                <p class="section-subtitle">Dari Premiere hingga Grade 8 — jalur belajar yang jelas, terstruktur, dan menyenangkan.</p>
+            </div>
+
+            <div class="programs-grid">
+                <!-- Guitar -->
+                <div class="program-card reveal">
+                    <div class="program-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </div>
+                    <h3 class="program-name">Guitar</h3>
+                    <p class="program-desc">Dari chord pertama sampai Grade 8 dengan teknik yang solid.</p>
+                </div>
+                <!-- Piano -->
+                <div class="program-card reveal" style="transition-delay: 0.1s;">
+                    <div class="program-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2" ry="2"></rect><line x1="2" y1="9" x2="22" y2="9"></line><line x1="6" y1="9" x2="6" y2="21"></line><line x1="10" y1="9" x2="10" y2="21"></line><line x1="14" y1="9" x2="14" y2="21"></line><line x1="18" y1="9" x2="18" y2="21"></line></svg>
+                    </div>
+                    <h3 class="program-name">Piano</h3>
+                    <p class="program-desc">Teknik klasik bertemu dengan repertoar modern yang relevan.</p>
+                </div>
+                <!-- Vocal -->
+                <div class="program-card reveal" style="transition-delay: 0.2s;">
+                    <div class="program-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line><line x1="8" y1="22" x2="16" y2="22"></line></svg>
+                    </div>
+                    <h3 class="program-name">Vocal</h3>
+                    <p class="program-desc">Temukan dan kuatkan suaramu dengan teknik pernapasan yang benar.</p>
+                </div>
+                <!-- Drums -->
+                <div class="program-card reveal">
+                    <div class="program-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2v20"></path><path d="M2 12h20"></path></svg>
+                    </div>
+                    <h3 class="program-name">Drums & Percussion</h3>
+                    <p class="program-desc">Ritme adalah bahasa tersendiri. Kuasai beat dan koordinasi.</p>
+                </div>
+                <!-- Violin -->
+                <div class="program-card reveal" style="transition-delay: 0.1s;">
+                    <div class="program-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+                    </div>
+                    <h3 class="program-name">Violin</h3>
+                    <p class="program-desc">Keindahan yang dilatih dengan presisi dan perasaan mendalam.</p>
+                </div>
+                <!-- Music Production -->
+                <div class="program-card reveal" style="transition-delay: 0.2s;">
+                    <div class="program-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-8m0 0V4m0 8h8m-8 0H4"></path></svg>
+                    </div>
+                    <h3 class="program-name">Music Production</h3>
+                    <p class="program-desc">Buat musikmu sendiri, dari ide awal sampai track final yang siap rilis.</p>
+                </div>
+            </div>
+
+            <div class="secondary-programs reveal">
+                <span class="secondary-item">Theory Class</span>
+                <span class="secondary-item">Recording Class</span>
+                <span class="secondary-item">Annual Home Concert</span>
+                <span class="secondary-item">Workshops & Camps</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSL Awards Section -->
+    <section id="rsl" class="rsl-section section-padding">
+        <div class="container">
+            <div class="rsl-container">
+                <div class="rsl-content reveal">
+                    <div class="rsl-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        RSL Awards Accredited Center
+                    </div>
+                    <h2 class="rsl-title">Kurikulum Bertaraf Internasional</h2>
+                    <p class="rsl-text">
+                        Rexa Music School adalah RSL Awards Accredited Center — salah satu dari sedikit sekolah musik di West Java yang menggunakan sistem grading internasional untuk musik kontemporer. Dari level Premiere hingga Grade 8, setiap siswa punya jalur yang jelas untuk berkembang dan mendapatkan sertifikasi yang diakui global.
+                    </p>
+                    <a href="https://wa.me/628123456789" class="text-link">
+                        Pelajari Lebih Lanjut 
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+                <div class="rsl-image reveal" style="transition-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1514119412350-e174d90d280e?q=80&w=2070&auto=format&fit=crop" alt="Music Education" referrerPolicy="no-referrer">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why RMS Section -->
+    <section class="why-rms section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Kenapa Rexa Music School?</h2>
+            </div>
+
+            <div class="pillars-grid">
+                <div class="pillar-item reveal">
+                    <div class="pillar-icon">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    </div>
+                    <h3 class="pillar-title">Knowledge</h3>
+                    <p class="pillar-desc">Kurikulum berbasis teori yang solid — bukan sekadar hafal lagu.</p>
+                </div>
+                <div class="pillar-item reveal" style="transition-delay: 0.1s;">
+                    <div class="pillar-icon">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                    <h3 class="pillar-title">Skills</h3>
+                    <p class="pillar-desc">Latihan praktikal yang konsisten, terstruktur, dan selalu relevan.</p>
+                </div>
+                <div class="pillar-item reveal" style="transition-delay: 0.2s;">
+                    <div class="pillar-icon">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.84-8.84 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </div>
+                    <h3 class="pillar-title">Attitude</h3>
+                    <p class="pillar-desc">Kami percaya karakter dan kecerdasan emosional adalah bagian dari belajar musik.</p>
+                </div>
+            </div>
+
+            <div class="quote-block reveal">
+                <p class="quote-text">"Musik bukan hanya soal teknik. It's about who you become in the process."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audience Section -->
+    <section class="audience section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Untuk Siapa RMS?</h2>
+            </div>
+
+            <div class="audience-grid">
+                <div class="audience-card reveal">
+                    <span class="audience-emoji">🧒</span>
+                    <h3 class="audience-title">Untuk Anak & Remaja</h3>
+                    <p class="audience-desc">Bangun disiplin, kreativitas, dan kepercayaan diri lewat musik — dalam lingkungan yang aman dan menyenangkan.</p>
+                </div>
+                <div class="audience-card reveal" style="transition-delay: 0.1s;">
+                    <span class="audience-emoji">🎸</span>
+                    <h3 class="audience-title">Untuk Dewasa Muda</h3>
+                    <p class="audience-desc">Nggak ada kata terlambat. Musik adalah cara terbaik untuk reconnect dengan diri sendiri di tengah kesibukan.</p>
+                </div>
+                <div class="audience-card reveal" style="transition-delay: 0.2s;">
+                    <span class="audience-emoji">👨‍👩‍👧</span>
+                    <h3 class="audience-title">Untuk Orang Tua</h3>
+                    <p class="audience-desc">Lebih dari les musik — investasi untuk tumbuh kembang anak secara holistik dengan standar internasional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Cerita dari Siswa & Orang Tua Kami</h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-quote">"Anak saya jauh lebih percaya diri sejak belajar di RMS. Bukan cuma musiknya — sikapnya pun berubah."</p>
+                    <div class="testimonial-author">
+                        <span class="author-name">Ibu Sari</span>
+                        <span class="author-role">Orang tua siswa</span>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal" style="transition-delay: 0.1s;">
+                    <p class="testimonial-quote">"Gue pikir udah terlambat buat belajar gitar di umur 24. Ternyata di sini malah jadi hobby yang gue tunggu-tunggu tiap minggu."</p>
+                    <div class="testimonial-author">
+                        <span class="author-name">Dimas</span>
+                        <span class="author-role">Siswa Dewasa (24 tahun)</span>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal" style="transition-delay: 0.2s;">
+                    <p class="testimonial-quote">"Sertifikat RSL Grade 3-nya bikin bangga banget. Ada target yang jelas, ada pencapaian yang nyata."</p>
+                    <div class="testimonial-author">
+                        <span class="author-name">Bapak Rendi</span>
+                        <span class="author-role">Orang tua siswa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Trial CTA Section -->
+    <section class="free-trial-cta section-padding">
+        <div class="container">
+            <div class="cta-container reveal">
+                <h2 class="cta-title">Mulai dengan Satu Langkah Kecil.</h2>
+                <p class="cta-subtitle">Coba satu sesi gratis — tanpa komitmen, tanpa tekanan. Biar musiknya yang bicara.</p>
+                <a href="https://wa.me/628123456789" class="btn btn-white btn-lg" style="font-size: 1.25rem; padding: 1.25rem 3rem;">Daftar Free Trial Sekarang</a>
+                <p class="cta-microcopy">Hubungi kami via WhatsApp atau isi form pendaftaran</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section-padding">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-image reveal">
+                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop" alt="Rexa Music School Studio" referrerPolicy="no-referrer">
+                </div>
+                <div class="about-content reveal" style="transition-delay: 0.2s;">
+                    <h2 class="about-title">Tentang Rexa Music School</h2>
+                    <p class="about-text">
+                        Didirikan tahun 2013 di Cimahi, Rexa Music School lahir dari keyakinan bahwa musik bukan sekadar keterampilan — tapi alat untuk tumbuh. Berakar dari musik terapi dan bernaung di bawah Yayasan Soteria Terpadu, kami membangun sekolah yang peduli pada perkembangan manusia secara utuh.
+                    </p>
+                    <p class="about-text">
+                        Hari ini, RMS adalah satu-satunya contemporary music school di Cimahi dengan akreditasi RSL Awards internasional — dan kami terus berkembang untuk melayani lebih banyak siswa di West Java.
+                    </p>
+                    <a href="https://wa.me/628123456789" class="text-link">
+                        Pelajari Lebih Lanjut 
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructors Section -->
+    <section id="instructors" class="instructors section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Instruktur Kami</h2>
+                <p class="section-subtitle">Belajar langsung dari para profesional yang berdedikasi dan berpengalaman.</p>
+            </div>
+
+            <div class="instructors-grid">
+                <!-- Instructor 1 -->
+                <div class="instructor-card reveal" data-instructor="rexa">
+                    <div class="instructor-image">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop" alt="Rexa" referrerPolicy="no-referrer">
+                    </div>
+                    <h3 class="instructor-name">Rexa</h3>
+                    <span class="instructor-role">Founder & Lead Guitar</span>
+                    <p class="instructor-bio">Berpengalaman lebih dari 15 tahun di industri musik dan pendidikan kontemporer.</p>
+                    <div class="view-profile-hint">
+                        <span>Lihat Profil</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                </div>
+                <!-- Instructor 2 -->
+                <div class="instructor-card reveal" style="transition-delay: 0.1s;" data-instructor="maya">
+                    <div class="instructor-image">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop" alt="Maya" referrerPolicy="no-referrer">
+                    </div>
+                    <h3 class="instructor-name">Maya</h3>
+                    <span class="instructor-role">Piano & Theory</span>
+                    <p class="instructor-bio">Lulusan konservatori musik dengan spesialisasi pendidikan anak usia dini.</p>
+                    <div class="view-profile-hint">
+                        <span>Lihat Profil</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                </div>
+                <!-- Instructor 3 -->
+                <div class="instructor-card reveal" style="transition-delay: 0.2s;" data-instructor="andi">
+                    <div class="instructor-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" alt="Andi" referrerPolicy="no-referrer">
+                    </div>
+                    <h3 class="instructor-name">Andi</h3>
+                    <span class="instructor-role">Vocal Coach</span>
+                    <p class="instructor-bio">Penyanyi profesional yang fokus pada kesehatan vokal dan teknik kontemporer.</p>
+                    <div class="view-profile-hint">
+                        <span>Lihat Profil</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Pertanyaan yang Sering Ditanyakan</h2>
+                <p class="section-subtitle">Kalau masih ada yang kurang jelas, hubungi kami langsung via WhatsApp.</p>
+            </div>
+
+            <div class="faq-container reveal">
+                <div class="faq-list">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Berapa biaya les di Rexa Music School?
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Biaya bervariasi tergantung program dan instrumen yang dipilih. Kami menyediakan pilihan paket bulanan, 3 bulan, dan 6 bulan dengan harga yang lebih hemat. Untuk informasi lengkap, hubungi kami via WhatsApp — kami senang membantu menemukan paket yang paling sesuai.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FAQ 2 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Mulai umur berapa anak bisa belajar di RMS?
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Kami menerima siswa mulai usia 5 tahun. Setiap usia punya pendekatan belajar yang berbeda — kami akan menyesuaikan metode dengan tahap perkembangan anak.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FAQ 3 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Saya sama sekali belum bisa main musik. Bisa mulai dari nol?
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Justru itu titik awal yang paling baik. Kurikulum RSL Awards kami dimulai dari level Premiere — dirancang khusus untuk pemula absolut. Tidak ada yang terlalu baru untuk memulai.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FAQ 4 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Apakah saya harus punya alat musik sendiri dulu?
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Tidak wajib di awal. Selama sesi belajar, alat musik tersedia di sekolah. Kami akan bantu rekomendasikan alat yang tepat setelah beberapa sesi pertama, sesuai budget dan kebutuhan.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FAQ 5 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Seberapa fleksibel jadwal lesnya?
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Cukup fleksibel. Kami menyediakan slot weekday dan weekend, termasuk sore dan malam hari untuk yang sibuk kerja atau sekolah. Jadwal diatur bersama instruktur di awal enrollment.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FAQ 6 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            RSL Awards itu apa? Penting nggak?
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                RSL Awards adalah lembaga sertifikasi musik kontemporer internasional berbasis di UK, diakui di 50+ negara. Sertifikat RSL membuktikan kemampuan musikal secara terstruktur dan bisa jadi nilai tambah di portfolio akademik maupun karir. RMS adalah salah satu dari sedikit RSL Accredited Center di West Java.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FAQ 7 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Apa bedanya belajar di RMS dibanding les privat biasa?
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Les privat memberi fleksibilitas, tapi tidak memberi struktur, komunitas, atau sertifikasi. Di RMS, siswa dapat kurikulum internasional yang jelas, instruktur terlatih, jalur grade yang terukur, kesempatan tampil di Annual Home Concert, dan komunitas sesama musisi. Belajar musik di sini bukan hanya soal teknik — tapi tentang tumbuh.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FAQ 8 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Bagaimana mekanisme free trial-nya?
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Daftar via WhatsApp atau form di website. Kami akan jadwalkan satu sesi percobaan gratis bersama instruktur yang sesuai. Tidak ada komitmen, tidak ada tekanan. Biar pengalamannya yang berbicara.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FAQ 9 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Apakah ada kelas online?
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Tersedia untuk kondisi tertentu. Hubungi kami untuk informasi lebih lanjut mengenai opsi hybrid atau online.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FAQ 10 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Di mana lokasi RMS dan apakah ada parkir?
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Kami berlokasi di Jl. Purbasari No. 3, Padasuka, Cimahi Utara — area residensial yang mudah diakses dari Bandung Utara dan Cimahi. Tersedia area parkir untuk motor dan mobil.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-footer">
+                    <span class="faq-footer-text">Masih ada pertanyaan lain?</span>
+                    <a href="https://wa.me/628123456789" class="btn btn-primary">Chat via WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Temukan Kami</h2>
+            </div>
+
+            <div class="contact-container">
+                <div class="map-placeholder reveal">
+                    <!-- Google Maps Embed with Plus Code Location -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.12196628965!2d107.54133467499625!3d-6.876594993122194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e44078864f7b%3A0x7d8a6e8b8b8b8b8b!2sRexa%20Music%20School!5e0!3m2!1sen!2sid!4v1712370000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="contact-info reveal" style="transition-delay: 0.2s;">
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        </div>
+                        <div>
+                            <span class="contact-label">Alamat</span>
+                            <p class="contact-value">Jl. Purbasari No. 3, Padasuka, Cimahi Utara, West Java</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.28-2.28a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </div>
+                        <div>
+                            <span class="contact-label">WhatsApp</span>
+                            <p class="contact-value">+62 812 3456 789</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </div>
+                        <div>
+                            <span class="contact-label">Instagram</span>
+                            <p class="contact-value">@rexamusicschool</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        </div>
+                        <div>
+                            <span class="contact-label">Website</span>
+                            <p class="contact-value">rexamusicschool.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="logo">Rexa Music School</span>
+                    <p class="footer-tagline">"Where You Find Your Sound"</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="TikTok">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="YouTube">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.14 1 12 1 12s0 3.86.42 5.58a2.78 2.78 0 0 0 1.94 2c1.72.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.86 23 12 23 12s0-3.86-.42-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg>
+                        </a>
+                        <a href="https://wa.me/628123456789" class="social-icon" aria-label="WhatsApp">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-14.7 8.38 8.38 0 0 1 3.8.9L21 3.5Z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#programs" class="footer-link">Programs</a></li>
+                        <li><a href="#about" class="footer-link">About Us</a></li>
+                        <li><a href="#instructors" class="footer-link">Instructors</a></li>
+                        <li><a href="#faq" class="footer-link">FAQ</a></li>
+                        <li><a href="#rsl" class="footer-link">RSL Awards</a></li>
+                        <li><a href="#contact" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Others</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://wa.me/628123456789" class="footer-link">Free Trial</a></li>
+                        <li><a href="#" class="footer-link">Careers</a></li>
+                        <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="#" class="footer-link">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Rexa Music School. Part of Yayasan Soteria Terpadu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Instructor Modal -->
+    <div id="instructor-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close" aria-label="Close Modal">&times;</button>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modal-image" src="" alt="">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modal-name"></h2>
+                    <span id="modal-role" class="modal-role"></span>
+                    <div id="modal-bio" class="modal-bio-full"></div>
+                    <div class="modal-stats">
+                        <div>
+                            <span class="stat-label">Pengalaman</span>
+                            <span id="modal-exp" class="stat-value"></span>
+                        </div>
+                        <div>
+                            <span class="stat-label">Spesialisasi</span>
+                            <span id="modal-spec" class="stat-value"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileDrawer = document.getElementById('mobile-drawer');
+        const drawerOverlay = document.getElementById('drawer-overlay');
+        const drawerLinks = mobileDrawer.querySelectorAll('a');
+
+        const toggleMenu = () => {
+            mobileDrawer.classList.toggle('active');
+            drawerOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileDrawer.classList.contains('active') ? 'hidden' : '';
+        };
+
+        menuToggle.addEventListener('click', toggleMenu);
+        menuClose.addEventListener('click', toggleMenu);
+        drawerOverlay.addEventListener('click', toggleMenu);
+        
+        drawerLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.faq-answer').style.maxHeight = null;
+                    }
+                });
+                
+                // Toggle current item
+                if (isActive) {
+                    item.classList.remove('active');
+                    answer.style.maxHeight = null;
+                } else {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+            });
+        });
+
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Smooth Scroll for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navHeight = navbar.offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Instructor Modal Logic
+        const instructorData = {
+            rexa: {
+                name: "Rexa",
+                role: "Founder & Lead Guitar",
+                image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop",
+                bio: "Rexa adalah jantung dari Rexa Music School. Dengan pengalaman lebih dari 15 tahun sebagai gitaris sesi dan pendidik, ia telah mengembangkan kurikulum yang menggabungkan teknik klasik dengan kebebasan ekspresi kontemporer. Visinya adalah menciptakan ruang di mana setiap orang bisa menemukan 'suara' unik mereka melalui musik.",
+                exp: "15+ Tahun",
+                spec: "Electric & Acoustic Guitar"
+            },
+            maya: {
+                name: "Maya",
+                role: "Piano & Theory",
+                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop",
+                bio: "Maya percaya bahwa piano adalah dasar dari pemahaman musik yang mendalam. Lulusan konservatori musik ternama, ia memiliki spesialisasi dalam mengajar anak-anak usia dini (5-10 tahun) dengan metode yang menyenangkan namun tetap disiplin. Ia juga ahli dalam teori musik RSL Awards.",
+                exp: "8 Tahun",
+                spec: "Classical & Pop Piano"
+            },
+            andi: {
+                name: "Andi",
+                role: "Vocal Coach",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop",
+                bio: "Andi adalah seorang penyanyi profesional yang aktif di berbagai panggung nasional. Sebagai pelatih vokal, ia sangat menekankan pada kesehatan pita suara dan teknik pernapasan yang benar. Ia membantu siswa menguasai berbagai genre, mulai dari Pop, Jazz, hingga Rock.",
+                exp: "10 Tahun",
+                spec: "Contemporary Vocals"
+            }
+        };
+
+        const modal = document.getElementById('instructor-modal');
+        const modalClose = document.getElementById('modal-close');
+        const instructorCards = document.querySelectorAll('.instructor-card');
+
+        const openModal = (id) => {
+            const data = instructorData[id];
+            if (!data) return;
+
+            document.getElementById('modal-name').textContent = data.name;
+            document.getElementById('modal-role').textContent = data.role;
+            document.getElementById('modal-image').src = data.image;
+            document.getElementById('modal-image').alt = data.name;
+            document.getElementById('modal-bio').textContent = data.bio;
+            document.getElementById('modal-exp').textContent = data.exp;
+            document.getElementById('modal-spec').textContent = data.spec;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeModal = () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        instructorCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const id = card.getAttribute('data-instructor');
+                openModal(id);
+            });
+        });
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    </script>
+    <script type="module" src="chatbox.js"></script>
+</body>
+</html>
