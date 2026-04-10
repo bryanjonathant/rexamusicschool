@@ -2,7 +2,12 @@
  * Rexa Music School — AI Chatbox Widget
  * AI: Claude Haiku (Anthropic) via direct fetch — no SDK required
  * Features: Local FAQ instant answers + Claude fallback + live suggestions while typing
+ *
+ * ➜ To edit FAQ answers, AI instructions, or UI text:
+ *   Open chatbox-config.js — no need to touch this file.
  */
+
+import { FAQ, SYSTEM_PROMPT, WHATSAPP_URL, UI, QUICK_REPLIES } from './chatbox-config.js';
 
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
 
@@ -18,147 +23,21 @@ const getApiKey = () => {
 const CLAUDE_API_KEY = getApiKey();
 const MODEL = 'claude-haiku-4-5-20251001';
 
-const SYSTEM_PROMPT = `Kamu adalah asisten virtual Rexa Music School (RMS), sebuah contemporary music school di Cimahi, West Java, Indonesia.
+const getSheetsUrl = () => {
+    try {
+        if (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SHEETS_LOG_URL) {
+            return import.meta.env.VITE_SHEETS_LOG_URL;
+        }
+    } catch (e) {}
+    return '';
+};
 
-INFORMASI RMS:
-- Lokasi: Jl. Purbasari No. 3, Padasuka, Cimahi Utara, West Java
-- Berdiri: 2013, di bawah Yayasan Soteria Terpadu
-- WhatsApp: +62 812 3456 789 | Instagram: @rexamusicschool
+const SHEETS_LOG_URL = getSheetsUrl();
 
-PROGRAM: Guitar, Piano, Vocal, Drums & Percussion, Violin, Music Production, Theory Class, Recording Class
-EVENT: Annual Home Concert, Workshops & Camps
+// Random ID to group messages from the same chat session
+const SESSION_ID = Math.random().toString(36).slice(2, 10);
 
-KURIKULUM RSL Awards: Diakui internasional (50+ negara), Level Premiere–Grade 8, pendekatan Knowledge + Skills + Attitude
-
-SISWA: Mulai usia 5 tahun. Slot weekday & weekend termasuk malam hari.
-
-FASILITAS: Ruang ber-AC kedap suara. Studio dengan Logic Pro/Pro Tools. Siswa bisa pinjam instrumen.
-
-PROMO:
-- Diskon 10% jika langsung daftar di hari yang sama dengan free trial
-- Cashback Rp 50.000 untuk referral teman baru ("Bawa Teman")
-
-KEBIJAKAN: Reschedule max diinfokan 24 jam sebelumnya.
-
-HARGA: Jangan sebutkan angka spesifik — ada paket 1, 3, dan 6 bulan. Arahkan ke WhatsApp untuk detail.
-
-GAYA MENJAWAB:
-- Bahasa Indonesia conversational, campur English boleh
-- Gunakan "kamu" bukan "Anda"
-- MAKSIMAL 3 kalimat — singkat dan padat
-- Sesekali pakai emoji yang relevan 🎵 🎸 ✨
-- Jika tidak tahu, arahkan ke WhatsApp
-- Jika tertarik, tawarkan free trial gratis`;
-
-// ─── LOCAL FAQ (instant answers — zero API call) ──────────────────────────────
-
-const FAQ = [
-    {
-        id: 'programs',
-        keywords: ['program', 'kelas', 'instrumen', 'instrument', 'les apa', 'ada apa', 'pilihan', 'tersedia', 'main apa', 'belajar apa'],
-        question: 'Program apa saja yang tersedia?',
-        answer: 'RMS punya 6 program utama: Guitar, Piano, Vocal, Drums & Percussion, Violin, dan Music Production. Ada juga Theory Class, Recording Class, dan event tahunan Annual Home Concert. Semua tersedia dari anak-anak sampai dewasa! 🎵',
-        cta: null,
-    },
-    {
-        id: 'price',
-        keywords: ['biaya', 'harga', 'berapa', 'tarif', 'bayar', 'iuran', 'mahal', 'cost', 'fee'],
-        question: 'Berapa biaya lesnya?',
-        answer: 'Biaya bervariasi tergantung program. Ada paket bulanan, 3 bulan, dan 6 bulan (makin lama makin hemat!). Untuk harga terkini, hubungi kami via WhatsApp — kami bantu pilihkan paket yang paling pas 😊',
-        cta: { label: 'Tanya via WhatsApp', href: 'https://wa.me/628123456789' },
-    },
-    {
-        id: 'register',
-        keywords: ['daftar', 'mendaftar', 'registrasi', 'enroll', 'cara daftar', 'mulai', 'bergabung'],
-        question: 'Bagaimana cara mendaftar?',
-        answer: 'Gampang! Hubungi kami via WhatsApp atau klik "Book Free Trial" di website. Kami jadwalkan satu sesi percobaan gratis, tanpa komitmen. Daftar di hari yang sama dapat diskon 10%! ✨',
-        cta: { label: 'Book Free Trial', href: 'https://wa.me/628123456789' },
-    },
-    {
-        id: 'trial',
-        keywords: ['free trial', 'trial', 'coba', 'gratis', 'percobaan', 'sesi pertama', 'test'],
-        question: 'Gimana mekanisme free trial?',
-        answer: 'Daftar via WhatsApp dan kami jadwalkan satu sesi gratis dengan instruktur yang sesuai. Tidak ada komitmen, tidak ada tekanan. Kalau langsung daftar di hari yang sama, ada diskon 10%! 🎉',
-        cta: { label: 'Daftar Free Trial', href: 'https://wa.me/628123456789' },
-    },
-    {
-        id: 'age',
-        keywords: ['umur', 'usia', 'berapa tahun', 'anak', 'minimal umur', 'mulai umur', 'tahun', 'balita'],
-        question: 'Mulai umur berapa bisa belajar?',
-        answer: 'Kami menerima siswa mulai usia 5 tahun. Metode disesuaikan dengan tahap perkembangan tiap usia — anak kecil sampai dewasa punya pendekatan yang berbeda. Tidak ada kata terlambat! 😊',
-        cta: null,
-    },
-    {
-        id: 'beginner',
-        keywords: ['pemula', 'nol', 'belum bisa', 'tidak bisa', 'baru', 'pertama kali', 'dasar', 'dari nol'],
-        question: 'Saya masih pemula total, bisa daftar?',
-        answer: 'Justru itu titik terbaik untuk mulai! Kurikulum RSL Awards kami dimulai dari level Premiere — dirancang khusus untuk pemula absolut. Semua orang di RMS dulu juga mulai dari nol 🎵',
-        cta: null,
-    },
-    {
-        id: 'instrument_loan',
-        keywords: ['alat musik', 'instrumen sendiri', 'punya alat', 'beli dulu', 'harus bawa', 'belum punya alat'],
-        question: 'Harus punya alat musik sendiri dulu?',
-        answer: 'Tidak wajib di awal! Alat musik tersedia di sekolah selama sesi belajar, dan siswa boleh meminjam untuk latihan (selama slot kosong). Kami bantu rekomendasikan alat yang tepat setelah beberapa sesi 🎸',
-        cta: null,
-    },
-    {
-        id: 'schedule',
-        keywords: ['jadwal', 'schedule', 'kapan', 'hari', 'jam', 'waktu', 'fleksibel', 'malam', 'weekend', 'hari apa'],
-        question: 'Jadwal lesnya fleksibel nggak?',
-        answer: 'Cukup fleksibel! Ada slot weekday dan weekend, termasuk sore dan malam hari untuk yang sibuk kerja atau sekolah. Jadwal diatur bersama instrukturmu di awal enrollment 📅',
-        cta: null,
-    },
-    {
-        id: 'rsl',
-        keywords: ['rsl', 'rsl awards', 'sertifikat', 'sertifikasi', 'internasional', 'grade', 'akreditasi', 'sertifikat internasional'],
-        question: 'Apa itu RSL Awards?',
-        answer: 'RSL Awards adalah lembaga sertifikasi musik kontemporer dari UK, diakui di 50+ negara. RMS adalah salah satu dari sedikit RSL Accredited Center di West Java — sertifikatmu valid di seluruh dunia! 🌍',
-        cta: null,
-    },
-    {
-        id: 'location',
-        keywords: ['lokasi', 'alamat', 'dimana', 'cimahi', 'bandung', 'jalan', 'tempat', 'parkir', 'maps', 'google maps'],
-        question: 'Di mana lokasi RMS?',
-        answer: 'Kami ada di Jl. Purbasari No. 3, Padasuka, Cimahi Utara — mudah diakses dari Bandung Utara dan Cimahi. Tersedia parkir untuk motor dan mobil 📍',
-        cta: null,
-    },
-    {
-        id: 'online',
-        keywords: ['online', 'daring', 'zoom', 'virtual', 'remote', 'jarak jauh', 'dari rumah'],
-        question: 'Ada kelas online?',
-        answer: 'Tersedia untuk kondisi tertentu. Hubungi kami via WhatsApp untuk info lebih lanjut soal opsi hybrid atau kelas online ya!',
-        cta: { label: 'Tanya via WhatsApp', href: 'https://wa.me/628123456789' },
-    },
-    {
-        id: 'contact',
-        keywords: ['kontak', 'hubungi', 'whatsapp', 'wa', 'telepon', 'contact', 'instagram', 'sosmed'],
-        question: 'Bagaimana cara menghubungi RMS?',
-        answer: 'Bisa via WhatsApp +62 812 3456 789 atau Instagram @rexamusicschool. Tim kami siap bantu Senin–Sabtu! 📱',
-        cta: { label: 'Chat WhatsApp', href: 'https://wa.me/628123456789' },
-    },
-    {
-        id: 'instructors',
-        keywords: ['instruktur', 'guru', 'pengajar', 'siapa', 'teacher', 'coach', 'tenaga pengajar'],
-        question: 'Siapa saja instrukturnya?',
-        answer: 'Instruktur kami profesional berpengalaman: Rexa (Founder & Guitar, 15+ tahun), Maya (Piano & Theory, spesialis anak usia dini), dan Andi (Vocal Coach, penyanyi profesional). Semua terlatih kurikulum RSL Awards! 🎶',
-        cta: null,
-    },
-    {
-        id: 'compare',
-        keywords: ['beda', 'bedanya', 'keunggulan', 'kenapa', 'why', 'les privat', 'dibanding', 'lebih baik'],
-        question: 'Apa bedanya RMS vs les privat biasa?',
-        answer: 'Di RMS kamu dapat kurikulum RSL Awards terstruktur, sertifikasi diakui global, komunitas sesama musisi, dan kesempatan tampil di Annual Home Concert — bukan sekadar hafal lagu, tapi tumbuh sebagai musisi 🎵',
-        cta: null,
-    },
-    {
-        id: 'promo',
-        keywords: ['promo', 'diskon', 'discount', 'cashback', 'referral', 'bawa teman', 'hemat', 'potongan'],
-        question: 'Ada promo atau diskon?',
-        answer: 'Ada! Diskon 10% kalau langsung daftar di hari yang sama dengan free trial. Plus promo "Bawa Teman" — cashback Rp 50.000 untuk siswa yang ajak teman baru bergabung! 🎉',
-        cta: { label: 'Daftar Sekarang', href: 'https://wa.me/628123456789' },
-    },
-];
+// SYSTEM_PROMPT, FAQ, WHATSAPP_URL, UI, QUICK_REPLIES → imported from chatbox-config.js
 
 // ─── SUGGESTION MATCHING ──────────────────────────────────────────────────────
 
@@ -577,6 +456,10 @@ const styles = `
 
 // ─── HTML ─────────────────────────────────────────────────────────────────────
 
+const quickReplyHTML = QUICK_REPLIES.map(r =>
+    `<button class="rms-quick-btn" data-faq="${r.faqId}">${r.label}</button>`
+).join('\n            ');
+
 const widgetHTML = `
     <button id="rms-chat-trigger" class="pulse" aria-label="Buka chat RMS">
         <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
@@ -592,8 +475,8 @@ const widgetHTML = `
                     </svg>
                 </div>
                 <div class="rms-header-info">
-                    <h3>RMS Assistant</h3>
-                    <p><span class="rms-online-dot" aria-hidden="true"></span>Online — siap membantu!</p>
+                    <h3>${UI.headerTitle}</h3>
+                    <p><span class="rms-online-dot" aria-hidden="true"></span>${UI.headerSubtitle}</p>
                 </div>
             </div>
             <button id="rms-chat-close" aria-label="Tutup chat">
@@ -606,18 +489,15 @@ const widgetHTML = `
         <div id="rms-chat-messages" aria-live="polite" aria-relevant="additions"></div>
 
         <div id="rms-quick-replies" aria-label="Pertanyaan populer">
-            <button class="rms-quick-btn" data-faq="programs">Program Apa Saja?</button>
-            <button class="rms-quick-btn" data-faq="register">Cara Daftar</button>
-            <button class="rms-quick-btn" data-faq="trial">Free Trial</button>
-            <button class="rms-quick-btn" data-faq="contact">Hubungi Kami</button>
+            ${quickReplyHTML}
         </div>
 
-        <div id="rms-suggestions" role="listbox" aria-label="Saran pertanyaan"></div>
+        <div id="rms-suggestions" role="listbox" aria-label="${UI.suggestionsLabel}"></div>
 
         <div id="rms-chat-input-container">
             <textarea
                 id="rms-chat-input"
-                placeholder="Ketik pertanyaanmu..."
+                placeholder="${UI.inputPlaceholder}"
                 rows="1"
                 aria-label="Ketik pesan"
                 autocomplete="off"
@@ -680,6 +560,35 @@ const trimHistory = () => {
     while (chatHistory.length > 10) chatHistory.splice(0, 2);
 };
 
+// ─── SHEETS LOGGER ────────────────────────────────────────────────────────────
+
+/**
+ * Fire-and-forget: logs a single message row to Google Sheets via Apps Script.
+ * Uses a GET request with no-cors so it never blocks the UI and needs no CORS config.
+ * @param {'user'|'bot'} role
+ * @param {string} message
+ * @param {'faq'|'claude'} source
+ */
+const logToSheets = (role, message, source = 'claude') => {
+    if (!SHEETS_LOG_URL) return;
+    try {
+        const params = new URLSearchParams({
+            ts:      new Date().toISOString(),
+            session: SESSION_ID,
+            role,
+            message,
+            source,
+            page:    window.location.href,
+        });
+        // Regular fetch (no no-cors) — Apps Script deployed for "Anyone" supports CORS.
+        // redirect: 'follow' ensures the Apps Script redirect chain is handled correctly.
+        fetch(`${SHEETS_LOG_URL}?${params}`, { redirect: 'follow' })
+            .catch(err => console.warn('[RMS Log]', err));
+    } catch (e) {
+        // logging must never break the chat
+    }
+};
+
 // ─── MESSAGE RENDERING ────────────────────────────────────────────────────────
 
 const addUserMessage = (text) => {
@@ -688,6 +597,8 @@ const addUserMessage = (text) => {
     el.innerHTML = `${escHtml(text)}<span class="rms-timestamp">${now()}</span>`;
     messagesEl.appendChild(el);
     scrollBottom();
+
+    logToSheets('user', text);
 
     if (!firstInteraction) {
         quickReplies.style.display = 'none';
@@ -707,7 +618,7 @@ const addBotMessage = (text, cta = null) => {
     if (cta) {
         ctaHtml = `<br><a href="${cta.href}" class="rms-context-btn" target="_blank" rel="noopener">${escHtml(cta.label)} →</a>`;
     } else if (/free trial|daftar sekarang|booking/i.test(text)) {
-        ctaHtml = `<br><a href="https://wa.me/628123456789" class="rms-context-btn" target="_blank" rel="noopener">Book Free Trial →</a>`;
+        ctaHtml = `<br><a href="${WHATSAPP_URL}" class="rms-context-btn" target="_blank" rel="noopener">Book Free Trial →</a>`;
     }
 
     el.innerHTML = `${escHtml(text)}${ctaHtml}<span class="rms-timestamp">${now()}</span>`;
@@ -738,7 +649,7 @@ const renderSuggestions = (items) => {
     if (!items.length) { hideSuggestions(); return; }
 
     suggestionsEl.innerHTML =
-        `<div class="rms-suggest-label">Pertanyaan serupa</div>` +
+        `<div class="rms-suggest-label">${UI.suggestionsLabel}</div>` +
         items.map(f => `
             <button class="rms-suggest-item" data-faq-id="${f.id}" role="option">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
@@ -778,6 +689,7 @@ const instantAnswer = (faq) => {
         addBotMessage(faq.answer, faq.cta);
         chatHistory.push({ role: 'assistant', content: faq.answer });
         trimHistory();
+        logToSheets('bot', faq.answer, 'faq');
     }, 320);
 };
 
@@ -835,6 +747,7 @@ const callClaude = async (userMsg) => {
         if (text) {
             addBotMessage(text);
             chatHistory.push({ role: 'assistant', content: text });
+            logToSheets('bot', text, 'claude');
         } else {
             throw new Error('Empty response');
         }
@@ -846,7 +759,7 @@ const callClaude = async (userMsg) => {
         } else {
             addBotMessage(
                 'Maaf, ada gangguan teknis. Hubungi kami langsung via WhatsApp ya! 🙏',
-                { label: 'Chat WhatsApp', href: 'https://wa.me/628123456789' }
+                { label: 'Chat WhatsApp', href: WHATSAPP_URL }
             );
         }
     } finally {
@@ -879,9 +792,8 @@ const toggleChat = () => {
         inputEl.focus();
 
         if (messagesEl.children.length === 0) {
-            const greeting = 'Halo! 👋 Selamat datang di Rexa Music School. Ada yang bisa kami bantu? Tanya soal program, jadwal, free trial, atau apa saja ya!';
-            addBotMessage(greeting);
-            chatHistory.push({ role: 'assistant', content: greeting });
+            addBotMessage(UI.welcomeMessage);
+            chatHistory.push({ role: 'assistant', content: UI.welcomeMessage });
         }
     } else {
         hideSuggestions();

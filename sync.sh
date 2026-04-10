@@ -19,8 +19,12 @@ MESSAGE="Site update: $TIMESTAMP"
 echo "💾 Committing changes: '$MESSAGE'..."
 git commit -m "$MESSAGE"
 
-# 4. Push
+# 4. Deploy to Vercel
+echo "🌐 Deploying to Vercel..."
+npx vercel --prod --yes
+
+# 5. Push to GitHub
 echo "⬆️ Pushing to GitHub..."
 git push origin "$BRANCH"
 
-echo "✅ Sync complete!"
+echo "✅ Sync complete! Your site is live at: https://rexa-music-school-april-2026.vercel.app"
